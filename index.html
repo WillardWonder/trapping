@@ -22,12 +22,19 @@
     .hero h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 6px rgba(0,0,0,.8); letter-spacing: 2px; }
     .hero p { font-size: 1.4rem; max-width: 900px; margin: 0 auto; font-weight: 500; text-shadow: 2px 2px 4px rgba(0,0,0,.8); }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 3.25rem 3rem 2rem; } /* bigger right-side buffer */
+
     .section { margin-bottom: 4rem; }
-    .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 2rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; }
+    .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; }
+
+    /* optional section banners (drop in images with these names or edit URLs below) */
+    .section-banner { min-height: 220px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); background: #e8e1d4 center/cover no-repeat; }
+    .banner-product { background-image: url('banner-product.jpg'); }
+    .banner-media   { background-image: url('banner-media.jpg'); }
+    .banner-story   { background-image: url('banner-story.jpg'); }
 
     /* product block */
-    .product-showcase { background: #fff; border-radius: 0; padding: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-left: 8px solid #c17a3c; }
+    .product-showcase { background: #fff; padding: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-left: 8px solid #c17a3c; }
     .product-grid { display: grid; grid-template-columns: 45% 55%; gap: 3rem; align-items: start; }
 
     .product-images { display: grid; gap: 1rem; }
@@ -74,6 +81,7 @@
     .vc-dots button.is-active { background:#c17a3c; }
 
     @media (max-width: 768px) {
+      .container { padding: 2rem 1.25rem; } /* still comfy on mobile */
       .product-grid { grid-template-columns: 1fr; }
       .family-grid { grid-template-columns: 1fr; }
       h1 { font-size: 1.5rem; }
@@ -97,6 +105,7 @@
 
   <nav>
     <a href="#product">The Egg Cover</a>
+    <a href="#media">Media</a>
     <a href="#story">Our Story</a>
     <a href="#contact">Connect</a>
   </nav>
@@ -110,9 +119,11 @@
     <!-- PRODUCT (top block: only 2 images next to copy) -->
     <section id="product" class="section">
       <h2 class="section-title">Introducing The Egg Cover</h2>
+      <div class="section-banner banner-product" aria-hidden="true"></div>
+
       <div class="product-showcase">
         <div class="product-grid">
-          <!-- Left: just two images -->
+          <!-- Left: two images -->
           <div class="product-images">
             <img src="trapcover.png" alt="Egg Cover trap cover">
             <img src="product3.png" alt="Egg Cover in field setting">
@@ -145,22 +156,24 @@
     <!-- MORE MEDIA (separate section below) -->
     <section id="media" class="section">
       <h2 class="section-title">More Views & Demo</h2>
+      <div class="section-banner banner-media" aria-hidden="true"></div>
+
       <div class="media-showcase">
         <!-- video carousel full-width -->
         <div class="video-carousel" id="videoCarousel">
           <div class="video-track">
             <div class="video-slide is-active">
-              <video preload="metadata" controls playsinline>
+              <video preload="metadata" autoplay muted loop playsinline controls>
                 <source src="eggs1.mp4" type="video/mp4">
               </video>
             </div>
             <div class="video-slide">
-              <video preload="metadata" controls playsinline>
+              <video preload="metadata" autoplay muted loop playsinline controls>
                 <source src="eggs2.mp4" type="video/mp4">
               </video>
             </div>
             <div class="video-slide">
-              <video preload="metadata" controls playsinline>
+              <video preload="metadata" autoplay muted loop playsinline controls>
                 <source src="eggs3.mp4" type="video/mp4">
               </video>
             </div>
@@ -182,6 +195,8 @@
     <!-- STORY -->
     <section id="story" class="section">
       <h2 class="section-title">Our Story</h2>
+      <div class="section-banner banner-story" aria-hidden="true"></div>
+
       <div class="story-section">
         <p><strong>The Family:</strong> Jason, Emily, Lexi, and Kathryn. Licensed trappers in Wisconsin, with the next generation learning the ropes.</p>
 
@@ -260,8 +275,10 @@
         slides.forEach((s, j) => {
           const v = s.querySelector('video');
           if (!v) return;
+          v.muted = true;           // always muted
+          v.volume = 0;             // belt + suspenders
           if (j === i) { v.play().catch(()=>{}); }
-          else { v.pause(); /* keep currentTime */ }
+          else { v.pause(); }
         });
         setActive(i);
         restartTimer();
@@ -284,7 +301,10 @@
       root.addEventListener('touchstart', () => clearInterval(timer), {passive:true});
       root.addEventListener('touchend', startTimer);
 
+      // init
       setActive(0);
+      // ensure initial videos are muted + playing appropriately
+      slides.forEach(s => { const v = s.querySelector('video'); if (v) { v.muted = true; v.volume = 0; }});
       startTimer();
     })();
   </script>
