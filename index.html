@@ -26,6 +26,7 @@
     .section { margin-bottom: 4rem; }
     .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 2rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; }
 
+    /* product block */
     .product-showcase { background: #fff; border-radius: 0; padding: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-left: 8px solid #c17a3c; }
     .product-grid { display: grid; grid-template-columns: 45% 55%; gap: 3rem; align-items: start; }
 
@@ -44,14 +45,10 @@
     .problem-solution { background: #2d2d2d; color: #f4f1ea; padding: 1.5rem; margin-top: 2rem; border-left: 6px solid #c17a3c; }
     .problem-solution strong { color: #c17a3c; font-size: 1.1rem; }
 
-    .story-section { background: #fff; padding: 3rem; border-left: 8px solid #c17a3c; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,.15); }
-    .story-section p { font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; }
-    .story-section strong { color: #c17a3c; font-size: 1.15rem; }
-
-    .family-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin: 3rem 0; }
-    .value-card { background: #2d2d2d; color: #f4f1ea; padding: 2rem; border-top: 6px solid #c17a3c; box-shadow: 0 4px 15px rgba(0,0,0,.2); }
-    .value-card h3 { color: #c17a3c; margin-bottom: 1rem; font-size: 1.5rem; text-transform: uppercase; font-weight: 900; letter-spacing: 1px; }
-    .value-card p { font-size: 1.05rem; }
+    /* more media section */
+    .media-showcase { background:#fff; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-left: 8px solid #c17a3c; }
+    .media-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .media-grid img { width:100%; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); }
 
     .cta-section { background: #c17a3c; color: #fff; padding: 4rem 3rem; text-align: center; margin: 3rem 0; box-shadow: 0 4px 20px rgba(0,0,0,.2); }
     .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; }
@@ -110,43 +107,18 @@
   </div>
 
   <div class="container">
+    <!-- PRODUCT (top block: only 2 images next to copy) -->
     <section id="product" class="section">
       <h2 class="section-title">Introducing The Egg Cover</h2>
       <div class="product-showcase">
         <div class="product-grid">
+          <!-- Left: just two images -->
           <div class="product-images">
-            <!-- Order per your request: product3 first, trapcover before it, then others -->
-            <img src="product3.png" alt="Egg Cover in field setting">
             <img src="trapcover.png" alt="Egg Cover trap cover">
-
-            <!-- VIDEO CAROUSEL (currently 3 videos found in repo) -->
-            <div class="video-carousel" id="videoCarousel">
-              <div class="video-track">
-                <div class="video-slide is-active">
-                  <video preload="metadata" controls playsinline>
-                    <source src="eggs1.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class="video-slide">
-                  <video preload="metadata" controls playsinline>
-                    <source src="eggs2.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class="video-slide">
-                  <video preload="metadata" controls playsinline>
-                    <source src="eggs3.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <!-- To add a 4th later, duplicate this block and change the src -->
-              </div>
-              <button class="vc-btn prev" aria-label="Previous video">&#10094;</button>
-              <button class="vc-btn next" aria-label="Next video">&#10095;</button>
-              <div class="vc-dots" aria-label="Slide dots"></div>
-            </div>
-            <!-- /VIDEO CAROUSEL -->
+            <img src="product3.png" alt="Egg Cover in field setting">
           </div>
-  
 
+          <!-- Right: details -->
           <div class="product-details">
             <h3>The Egg Cover</h3>
             <div class="subtitle">For DP Coon Traps</div>
@@ -169,14 +141,45 @@
         </div>
       </div>
     </section>
-    <section>
-      <section id="product" class="section">
-            <div class="product-images">
-            <img src="product2.png" alt="Egg Cover showing design">
-            <img src="product1.png" alt="Egg Cover with raccoon">
-            <!--img src="product4.png" alt="Egg Cover alternate angle"-->
-          </div></div></section>
 
+    <!-- MORE MEDIA (separate section below) -->
+    <section id="media" class="section">
+      <h2 class="section-title">More Views & Demo</h2>
+      <div class="media-showcase">
+        <!-- video carousel full-width -->
+        <div class="video-carousel" id="videoCarousel">
+          <div class="video-track">
+            <div class="video-slide is-active">
+              <video preload="metadata" controls playsinline>
+                <source src="eggs1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-slide">
+              <video preload="metadata" controls playsinline>
+                <source src="eggs2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-slide">
+              <video preload="metadata" controls playsinline>
+                <source src="eggs3.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="vc-btn prev" aria-label="Previous video">&#10094;</button>
+          <button class="vc-btn next" aria-label="Next video">&#10095;</button>
+          <div class="vc-dots" aria-label="Slide dots"></div>
+        </div>
+
+        <!-- image grid below the carousel -->
+        <div class="media-grid">
+          <img src="product2.png" alt="Egg Cover showing design">
+          <img src="product1.png" alt="Egg Cover with raccoon">
+          <img src="product4.png" alt="Egg Cover alternate angle">
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
     <section id="story" class="section">
       <h2 class="section-title">Our Story</h2>
       <div class="story-section">
@@ -258,7 +261,7 @@
           const v = s.querySelector('video');
           if (!v) return;
           if (j === i) { v.play().catch(()=>{}); }
-          else { v.pause(); v.currentTime = v.currentTime; }
+          else { v.pause(); /* keep currentTime */ }
         });
         setActive(i);
         restartTimer();
