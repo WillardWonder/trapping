@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daddy Daughter Trapping Supplies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f4f1ea;
+        }
+
+        header {
+            background: #2d2d2d;
+            color: #f4f1ea;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #c17a3c;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f4f1ea;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: #c17a3c;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.25rem;
+        }
+
+        nav {
+            background: #1a1a1a;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #f4f1ea;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            display: inline-block;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #c17a3c;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            border-bottom: 6px solid #c17a3c;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            font-weight: 500;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #2d2d2d;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border-bottom: 4px solid #c17a3c;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .product-showcase {
+            background: white;
+            border-radius: 0;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-left: 8px solid #c17a3c;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 45% 55%;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .product-images {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .product-images img {
+            width: 100%;
+            border: 3px solid #2d2d2d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .product-details h3 {
+            font-size: 2.2rem;
+            color: #2d2d2d;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-details .subtitle {
+            font-size: 1.2rem;
+            color: #c17a3c;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .product-details p {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .features {
+            list-style: none;
+            margin: 2rem 0;
+            background: #f4f1ea;
+            padding: 1.5rem;
+            border-left: 4px solid #c17a3c;
+        }
+
+        .features li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .features li:before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            color: #c17a3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .problem-solution {
+            background: #2d2d2d;
+            color: #f4f1ea;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 6px solid #c17a3c;
+        }
+
+        .problem-solution strong {
+            color: #c17a3c;
+            font-size: 1.1rem;
+        }
+
+        .story-section {
+            background: white;
+            padding: 3rem;
+            border-left: 8px solid #c17a3c;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .story-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .story-section strong {
+            color: #c17a3c;
+            font-size: 1.15rem;
+        }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            background: #2d2d2d;
+            color: #f4f1ea;
+            padding: 2rem;
+            border-top: 6px solid #c17a3c;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .value-card h3 {
+            color: #c17a3c;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .value-card p {
+            font-size: 1.05rem;
+        }
+
+        .cta-section {
+            background: #c17a3c;
+            color: white;
+            padding: 4rem 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #2d2d2d;
+            color: #f4f1ea;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid #2d2d2d;
+        }
+
+        .cta-button:hover {
+            background: #f4f1ea;
+            color: #2d2d2d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #f4f1ea;
+            text-align: center;
+            padding: 2rem;
+            border-top: 4px solid #c17a3c;
+        }
+
+        footer a {
+            color: #c17a3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .family-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            nav a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid #2d2d2d;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="logo.png" alt="Daddy Daughter Trapping Logo" class="logo">
+            <div>
+                <h1>Daddy Daughter Trapping</h1>
+                <div class="tagline">Supplies</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#product">The Egg Cover</a>
+        <a href="#story">Our Story</a>
+        <a href="#contact">Connect</a>
+    </nav>
+
+    <div class="hero">
+        <h2>Families That Trap Together, Stay Together</h2>
+        <p>Wisconsin Licensed Trappers | Building Memories in the Field</p>
+    </div>
+
+    <div class="container">
+        <section id="product" class="section">
+            <h2 class="section-title">Introducing The Egg Cover</h2>
+            <div class="product-showcase">
+                <div class="product-grid">
+                    <div class="product-images">
+                        <img src="product1.png" alt="Egg Cover in field setting">
+                        <img src="product2.png" alt="Egg Cover showing design">
+                        <img src="product3.png" alt="Egg Cover with raccoon">
+                    </div>
+                    <div class="product-details">
+                        <h3>The Egg Cover</h3>
+                        <div class="subtitle">For DP Coon Traps</div>
+                        <p>Born from real trapline experience. Designed by a father-daughter team who know what it takes to run a successful trap line in all conditions.</p>
+                        
+                        <ul class="features">
+                            <li>Keeps bait and lure bone dry in rain, snow, and wet conditions</li>
+                            <li>Screw-off egg top provides easy access to bait chamber</li>
+                            <li>Internal chamber designed for cotton ball with lure</li>
+                            <li>Two precision 45-degree vents ensure optimal scent diffusion</li>
+                            <li>Durable construction stands up to Wisconsin weather</li>
+                            <li>Purpose-built for DP coon traps</li>
+                        </ul>
+                        
+                        <div class="problem-solution">
+                            <p><strong>THE PROBLEM:</strong> Rain, snow, and moisture destroy bait effectiveness and wash away expensive lures. Your trapline investment gets compromised every time weather rolls in.</p>
+                            <p><strong>THE SOLUTION:</strong> The Egg Cover protects your bait investment while maintaining the scent attraction that brings animals to your sets. Keep your lures working and your catch rates high, no matter what Mother Nature throws at you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="section">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-section">
+                <p><strong>The Family:</strong> Jason, Emily, Lexi, and Kathryn. Licensed trappers in Wisconsin, with the next generation learning the ropes.</p>
+                
+                <p>Daddy Daughter Trapping started with Emily's first raccoon and has grown into something bigger than we imagined. Every cold morning checking traplines, every 50-pound beaver hauled out of the water, every lesson learned in the field has strengthened our family bond.</p>
+                
+                <p>We're not just hobby trappers. We help landowners with problem animals. We participate in wildlife management and conservation. We teach kids that outdoor skills matter. We harvest fur and create useful products from what nature provides. Most importantly, we spend time together doing something we love.</p>
+                
+                <p>From Emily's first visit to the fur truck to harvesting giant raccoons and working towards a beaver blanket, every experience has taught us something. The Egg Cover came from a real need we identified on our own trapline - keeping bait dry and lures working when the weather turns nasty.</p>
+                
+                <p><strong>This is our first product, designed by trappers who live this life every season.</strong></p>
+            </div>
+
+            <div class="family-grid">
+                <div class="value-card">
+                    <h3>Family Time</h3>
+                    <p>Building memories that last a lifetime. Teaching skills that matter. Creating bonds that can't be broken.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Conservation</h3>
+                    <p>Managing wildlife populations responsibly. Helping landowners and ecosystems. Being part of the solution.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Next Generation</h3>
+                    <p>Passing down knowledge about trapping, wildlife, and outdoor skills to kids who will carry it forward.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Real Solutions</h3>
+                    <p>Creating gear that solves actual problems we face in the field. No guesswork - just practical design.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section" id="contact">
+            <h2>Follow Our Adventures</h2>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">See our latest catches, trapline updates, and new products. Join the Daddy Daughter Trapping community on Facebook.</p>
+            <a href="https://www.facebook.com/daddy.daughter.trapping" target="_blank" class="cta-button">Visit Our Facebook</a>
+            <p style="margin-top: 2rem; font-size: 1rem;">Product inquiries or need help with unwanted critters? Message us on Facebook. (Local Wisconsin service area)</p>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem;">DADDY DAUGHTER TRAPPING SUPPLIES</p>
+        <p>Wisconsin Licensed Trappers | <a href="https://www.facebook.com/daddy.daughter.trapping" target="_blank">Facebook</a></p>
+        <p style="margin-top: 1rem;">&copy; 2025 | Tight Chains Everyone!</p>
+    </footer>
+</body>
+</html>
