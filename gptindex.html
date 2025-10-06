@@ -1,1 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daddy Daughter Trapping Supplies – The Egg Cover</title>
+  <meta name="description" content="The Egg Cover for DP coon traps – keeps bait and lure dry while optimizing scent diffusion. Designed by Wisconsin-licensed trappers." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f10;           /* page background */
+      --card: #141416;         /* card background */
+      --ink: #f7f7f5;          /* primary text */
+      --muted: #cfcac3;        /* secondary text */
+      --brand: #d08a44;        /* brand accent (copper) */
+      --ink-inv: #111;         /* dark text */
+      --ring: rgba(208,138,68,.35);
+      --maxw: 1180px;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 800px at 70% -10%, #1b1b1e 10%, var(--bg) 55%) no-repeat fixed;
+      line-height: 1.6;
+    }
+
+    a { color: var(--ink); text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+    /* Header / Nav */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: color-mix(in oklab, #111 80%, transparent);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { max-width: var(--maxw); margin: 0 auto; padding: .9rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: .9rem; }
+    .brand img { width: 52px; height: 52px; border-radius: 12px; object-fit: contain; background:#0d0d0e; border:1px solid rgba(255,255,255,.08); }
+    .brand h1 { font-size: 1.2rem; letter-spacing: .04em; font-weight: 900; text-transform: uppercase; margin: 0; }
+    .tag { font-size: .8rem; color: var(--muted); }
+    .spacer { flex: 1; }
+    .nav a.link { padding: .6rem .9rem; border-radius: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .83rem; opacity: .9; }
+    .nav a.link:hover { background: rgba(255,255,255,.06); }
+    .cta { background: var(--brand); color: var(--ink-inv); padding: .65rem 1rem; border-radius: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; border: 0; cursor: pointer; box-shadow: 0 8px 18px var(--ring); }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 14px 32px var(--ring); }
+
+    /* Hero */
+    .hero { position: relative; isolation: isolate; }
+    .hero-wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(2.5rem, 4vw, 3.5rem) 1.25rem 2rem; display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
+    .headline { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.08; margin: 0 0 .4rem; font-weight: 900; letter-spacing: .01em; }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 56ch; }
+
+    .hero-media { border-radius: var(--radius); overflow: clip; background: #0d0e0f; border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); }
+    .frame-hero { aspect-ratio: 21/9; display: flex; align-items: center; justify-content: center; }
+    .frame-hero img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+
+    /* Section shell */
+    .section { max-width: var(--maxw); margin: 0 auto; padding: 2.2rem 1.25rem; }
+    .section h2 { font-size: clamp(1.4rem, 3.2vw, 2rem); margin: 0 0 1rem; font-weight: 900; letter-spacing: .02em; }
+    .kicker { color: var(--brand); text-transform: uppercase; letter-spacing: .12em; font-weight: 800; font-size: .86rem; }
+
+    /* Product card */
+    .product { display: grid; grid-template-columns: 1.05fr .95fr; gap: 2rem; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow); padding: clamp(1.25rem, 2vw, 1.75rem); }
+
+    .media-stack { display: grid; gap: 1rem; }
+    .img-card { background: #0b0c0d; border: 1px solid rgba(255,255,255,.07); border-radius: var(--radius); overflow: clip; }
+    .img-card .frame { aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
+    .img-card img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+
+    .pcopy h3 { font-size: clamp(1.3rem, 2.8vw, 2rem); margin: .5rem 0; font-weight: 900; }
+    .subtitle { color: var(--brand); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .pcopy p { color: var(--muted); }
+    .features { margin: 1.1rem 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+    .features li { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); border: 1px solid rgba(255,255,255,.07); border-radius: 12px; padding: .7rem .8rem .7rem 2.2rem; position: relative; }
+    .features li::before { content: ""; position: absolute; left: .9rem; top: 1.05rem; width: .55rem; height: .55rem; border-radius: 3px; background: var(--brand); box-shadow: 0 0 0 4px rgba(208,138,68,.18); }
+
+    .callout { margin-top: 1.1rem; display: grid; gap: .65rem; background: #0e0f10; border: 1px solid rgba(255,255,255,.07); border-left: 5px solid var(--brand); border-radius: 12px; padding: .9rem 1rem; }
+    .callout strong { color: var(--ink); }
+
+    .buybar { display: flex; gap: .75rem; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
+    .price { font-weight: 900; font-size: 1.25rem; background: rgba(208,138,68,.15); color: var(--ink); border: 1px solid rgba(208,138,68,.35); padding: .5rem .8rem; border-radius: 12px; }
+    .btn { appearance: none; border: 0; border-radius: 12px; background: var(--brand); color: var(--ink-inv); font-weight: 900; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.2rem; cursor: pointer; box-shadow: 0 10px 24px var(--ring); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 16px 36px var(--ring); }
+    .btn.alt { background: transparent; border: 1px solid rgba(255,255,255,.14); color: var(--ink); box-shadow: none; }
+
+    /* Video Carousel */
+    .carousel { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow); overflow: clip; position: relative; }
+    .track { display: flex; transition: transform .45s ease; }
+    .slide { min-width: 100%; }
+    .video-frame { aspect-ratio: 16/9; background: #000; display: grid; place-items: center; }
+    .video-frame video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+
+    .car-btn { position: absolute; top: 50%; translate: 0 -50%; border: 0; background: rgba(255,255,255,.06); color: var(--ink); padding: .6rem .8rem; border-radius: 10px; cursor: pointer; }
+    .car-btn:hover { background: rgba(255,255,255,.12); }
+    .car-btn.prev { left: .6rem; }
+    .car-btn.next { right: .6rem; }
+    .dots { position: absolute; bottom: .7rem; left: 0; right: 0; display: flex; gap: .4rem; justify-content: center; }
+    .dots button { width: .55rem; height: .55rem; border-radius: 50%; border: 0; background: rgba(255,255,255,.28); cursor: pointer; }
+    .dots button.is-active { background: var(--brand); }
+
+    /* Image grid */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+    .grid .img-card { grid-column: span 4; }
+    .grid .img-card.wide { grid-column: span 8; }
+
+    /* Story / values */
+    .story { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; }
+    .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .vcard { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 14px; padding: 1rem; }
+    .vcard h3 { margin: .2rem 0 .4rem; }
+    .vcard p { color: var(--muted); margin: 0; }
+
+    /* CTA band */
+    .cta-band { margin: 2rem auto 0; max-width: var(--maxw); padding: 1.25rem; }
+    .cta-wrap { background: linear-gradient(180deg, rgba(208,138,68,.18), rgba(208,138,68,.1)); border: 1px solid rgba(208,138,68,.35); border-radius: calc(var(--radius) + 6px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 1rem; align-items: center; padding: clamp(1rem, 2.2vw, 1.4rem); box-shadow: 0 14px 34px var(--ring); }
+    .cta-wrap p { color: var(--ink); margin: 0; }
+
+    /* Footer */
+    footer { margin-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .foot { max-width: var(--maxw); margin: 0 auto; padding: 1.4rem 1.25rem 2.2rem; color: var(--muted); font-size: .95rem; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .product { grid-template-columns: 1fr; }
+      .story { grid-template-columns: 1fr; }
+      .cta-wrap { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .grid .img-card { grid-column: span 6; }
+      .grid .img-card.wide { grid-column: span 12; }
+      .nav a.link { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="topbar" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#top">
+        <img src="logo.png" alt="Daddy Daughter Trapping logo">
+        <div>
+          <h1>Daddy Daughter Trapping</h1>
+          <div class="tag">Wisconsin Licensed Trappers • Since 2025</div>
+        </div>
+      </a>
+      <div class="spacer"></div>
+      <a class="link" href="#product">The Egg Cover</a>
+      <a class="link" href="#media">Media</a>
+      <a class="link" href="#story">Our Story</a>
+      <a class="link" href="#connect">Connect</a>
+      <a class="cta" href="https://www.facebook.com/daddy.daughter.trapping" target="_blank" rel="noopener">Buy / Message</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-wrap">
+      <div>
+        <p class="kicker">Purpose‑built for DP Coon Traps</p>
+        <h2 class="headline">Keep bait dry. Keep scent strong. Keep catch rates high.</h2>
+        <p class="sub">The Egg Cover was engineered on real Wisconsin traplines by a father‑daughter team. It protects bait and lure from rain, snow, and slush while venting scent with precision.</p>
+        <div class="buybar">
+          <span class="price">Intro pricing — message for current availability</span>
+          <a class="btn" href="https://www.facebook.com/daddy.daughter.trapping" target="_blank" rel="noopener">Message on Facebook</a>
+          <a class="btn alt" href="#product">Learn more</a>
+        </div>
+      </div>
+      <div class="hero-media" aria-hidden="true">
+        <div class="frame-hero">
+          <img src="hero.png" alt="The Egg Cover on a trap line">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product -->
+  <section class="section" id="product">
+    <h2>The Egg Cover</h2>
+    <div class="product" role="region" aria-label="Egg Cover details">
+      <div class="media-stack">
+        <figure class="img-card">
+          <div class="frame"><img src="trapcover.png" alt="Egg Cover trap cover close up"></div>
+        </figure>
+        <figure class="img-card">
+          <div class="frame"><img src="product3.png" alt="Egg Cover installed in a field set"></div>
+        </figure>
+      </div>
+
+      <div class="pcopy">
+        <p class="subtitle">For DP Coon Traps</p>
+        <h3>Born on the line. Built to last.</h3>
+        <p>Designed by trappers who run in every kind of weather. The Egg Cover shields bait and lure while letting scent do its job.</p>
+        <ul class="features">
+          <li>Keeps bait and lure dry in rain, snow, and freeze–thaw cycles</li>
+          <li>Screw‑off egg top for fast access to bait chamber</li>
+          <li>Internal chamber sized for a cotton ball with lure</li>
+          <li>Two 45‑degree vents for optimized scent diffusion</li>
+          <li>Durable build that stands up to Wisconsin weather</li>
+          <li>Purpose‑built fit for DP coon traps</li>
+        </ul>
+        <div class="callout">
+          <p><strong>The problem:</strong> Moisture ruins bait and washes away expensive lure, tanking your set’s performance.</p>
+          <p><strong>The solution:</strong> The Egg Cover keeps your bait investment protected while venting scent to draw animals to your sets—no matter the forecast.</p>
+        </div>
+        <div class="buybar">
+          <a class="btn" href="https://www.facebook.com/daddy.daughter.trapping" target="_blank" rel="noopener">Get Yours</a>
+          <a class="btn alt" href="#media">See it in action</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media / Demo -->
+  <section class="section" id="media">
+    <h2>More Views & Demo</h2>
+
+    <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Product demo videos">
+      <div class="track">
+        <div class="slide" aria-roledescription="slide" aria-label="1 of 3">
+          <div class="video-frame">
+            <video preload="metadata" autoplay muted loop playsinline controls>
+              <source src="eggs1.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="slide" aria-roledescription="slide" aria-label="2 of 3">
+          <div class="video-frame">
+            <video preload="metadata" autoplay muted loop playsinline controls>
+              <source src="eggs2.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="slide" aria-roledescription="slide" aria-label="3 of 3">
+          <div class="video-frame">
+            <video preload="metadata" autoplay muted loop playsinline controls>
+              <source src="eggs3.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+      <button class="car-btn prev" aria-label="Previous">&#10094;</button>
+      <button class="car-btn next" aria-label="Next">&#10095;</button>
+      <div class="dots" aria-label="Slide dots"></div>
+    </div>
+
+    <div class="section" style="padding-top:1.2rem">
+      <div class="grid" role="list">
+        <figure class="img-card wide" role="listitem"><div class="frame"><img src="product2.png" alt="Egg Cover side profile"></div></figure>
+        <figure class="img-card" role="listitem"><div class="frame"><img src="product1.png" alt="Egg Cover with raccoon in background"></div></figure>
+        <figure class="img-card" role="listitem"><div class="frame"><img src="product4.png" alt="Egg Cover alternate angle"></div></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section" id="story">
+    <h2>Our Story</h2>
+    <div class="story">
+      <div>
+        <p><strong>The Family:</strong> Jason, Emily, Lexi, and Kathryn. Licensed trappers in Wisconsin, teaching the next generation the craft.</p>
+        <p>Daddy Daughter Trapping started with Emily’s first raccoon and grew into something bigger. Cold mornings on the line, hauling big beavers, and solving real landowner problems forged our approach: practical gear that works.</p>
+        <p>The Egg Cover came from a real need—keeping bait dry and lures effective when weather turns nasty.</p>
+        <p><strong>This is our first product, designed by trappers who live this life every season.</strong></p>
+      </div>
+      <div class="values">
+        <div class="vcard"><h3>Family Time</h3><p>Memories that last. Skills that matter.</p></div>
+        <div class="vcard"><h3>Conservation</h3><p>Responsible wildlife management and landowner help.</p></div>
+        <div class="vcard"><h3>Next Generation</h3><p>Passing down outdoor skills and ethics.</p></div>
+        <div class="vcard"><h3>Real Solutions</h3><p>Field‑tested designs that solve real problems.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="cta-band" id="connect">
+    <div class="cta-wrap">
+      <div>
+        <h2 style="margin:.2rem 0 .3rem">Follow Our Adventures</h2>
+        <p>See catches, trapline updates, and new products. Join the Daddy Daughter Trapping community on Facebook.</p>
+      </div>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap; justify-content:flex-end">
+        <a class="btn" href="https://www.facebook.com/daddy.daughter.trapping" target="_blank" rel="noopener">Visit Facebook</a>
+        <a class="btn alt" href="#top">Back to top</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <strong style="color:var(--ink)">DADDY DAUGHTER TRAPPING SUPPLIES</strong><br/>
+      Wisconsin Licensed Trappers · <a href="https://www.facebook.com/daddy.daughter.trapping" target="_blank" rel="noopener" style="text-decoration:underline">Facebook</a>
+      <div style="margin-top:.6rem">© 2025 · Tight Chains Everyone!</div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple accessible video carousel with object-fit: contain (no cropping)
+    (function () {
+      const root = document.getElementById('carousel');
+      if (!root) return;
+      const track = root.querySelector('.track');
+      const slides = Array.from(root.querySelectorAll('.slide'));
+      const prev = root.querySelector('.prev');
+      const next = root.querySelector('.next');
+      const dotsWrap = root.querySelector('.dots');
+      let i = 0, timer = null, intervalMs = 6000, userInteracted = false;
+
+      // dots
+      slides.forEach((_, idx) => {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
+        b.addEventListener('click', () => { userInteracted = true; go(idx); });
+        dotsWrap.appendChild(b);
+      });
+
+      function setActive(idx) {
+        Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
+      }
+      function go(idx) {
+        i = (idx + slides.length) % slides.length;
+        track.style.transform = 'translateX(' + (-i * 100) + '%)';
+        slides.forEach((s, j) => {
+          const v = s.querySelector('video');
+          if (!v) return;
+          if (j === i) { v.play().catch(()=>{}); }
+          else { v.pause(); }
+        });
+        setActive(i); restart();
+      }
+      function nextSlide() { go(i + 1); }
+      function prevSlide() { go(i - 1); }
+      function start() { if (timer) clearInterval(timer); timer = setInterval(() => { if (!userInteracted) nextSlide(); }, intervalMs); }
+      function restart() { userInteracted = false; start(); }
+
+      next.addEventListener('click', () => { userInteracted = true; nextSlide(); });
+      prev.addEventListener('click', () => { userInteracted = true; prevSlide(); });
+      root.addEventListener('mouseenter', () => clearInterval(timer));
+      root.addEventListener('mouseleave', start);
+      root.addEventListener('touchstart', () => clearInterval(timer), {passive:true});
+      root.addEventListener('touchend', start);
+
+      // init
+      setActive(0);
+      slides.forEach(s => { const v = s.querySelector('video'); if (v) { v.muted = true; v.volume = 0; }});
+      start();
+    })();
+  </script>
+</body>
+</html>
 
