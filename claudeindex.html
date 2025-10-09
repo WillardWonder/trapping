@@ -45,7 +45,7 @@
     .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; position: relative; }
     .section-title::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 60%; height: 4px; background: #2d2d2d; }
 
-    .section-banner { min-height: 220px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 6px 20px rgba(0,0,0,.25); background: #e8e1d4 center/cover no-repeat; border-radius: 4px; transition: transform .3s; }
+    .section-banner { min-height: 220px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 6px 20px rgba(0,0,0,.25); background: #e8e1d4 center/contain no-repeat; border-radius: 4px; transition: transform .3s; }
     .section-banner:hover { transform: scale(1.01); }
     .banner-product { background-image: url('banner-product.jpg'); }
     .banner-media { background-image: url('banner-media.jpg'); }
@@ -57,7 +57,7 @@
     .product-grid { display: grid; grid-template-columns: 45% 55%; gap: 3rem; align-items: start; }
 
     .product-images { display: grid; gap: 1rem; }
-    .product-images img, .product-images video { width: 100%; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; }
+    .product-images img, .product-images video { width: 100%; height: 100%; object-fit: contain; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
     .product-images img:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
     .product-images video { background: #000; }
 
@@ -78,7 +78,7 @@
     /* Media Showcase */
     .media-showcase { background:#fff; padding: 2rem; box-shadow: 0 6px 25px rgba(0,0,0,.18); border-left: 8px solid #c17a3c; border-radius: 4px; }
     .media-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .media-grid img { width:100%; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; }
+    .media-grid img { width:100%; height: 300px; object-fit: contain; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
     .media-grid img:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
 
     /* Video Carousel */
@@ -231,21 +231,7 @@
       <div class="media-showcase">
         <div class="video-carousel" id="videoCarousel">
           <div class="video-track">
-            <div class="video-slide is-active">
-              <video preload="metadata" muted loop playsinline controls>
-                <source src="eggs1.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide">
-              <video preload="metadata" muted loop playsinline controls>
-                <source src="eggs2.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide">
-              <video preload="metadata" muted loop playsinline controls>
-                <source src="eggs3.mp4" type="video/mp4">
-              </video>
-            </div>
+            <!-- Videos will be automatically loaded here -->
           </div>
           <button class="vc-btn prev" aria-label="Previous video">&#10094;</button>
           <button class="vc-btn next" aria-label="Next video">&#10095;</button>
@@ -253,9 +239,7 @@
         </div>
 
         <div class="media-grid">
-          <img src="product2.png" alt="Egg Cover showing design">
-          <img src="product1.png" alt="Egg Cover with raccoon">
-          <img src="product4.png" alt="Egg Cover alternate angle">
+          <!-- Images will be automatically loaded here -->
         </div>
       </div>
     </section>
@@ -314,111 +298,128 @@
   <button class="scroll-top" aria-label="Scroll to top">&#8593;</button>
 
   <script>
+    // Auto-load all videos and images from repository
+    async function loadMediaFiles() {
+      // List your video and image files here - just add new ones to these arrays!
+      const knownVideos = ['eggs1.mp4', 'eggs2.mp4', 'eggs3.mp4'];
+      const knownImages = ['product1.png', 'product2.png', 'product3.png', 'product4.png'];
+      
+      // Load videos into carousel
+      const videoTrack = document.querySelector('#videoCarousel .video-track');
+      if (videoTrack) {
+        videoTrack.innerHTML = '';
+        for (const video of knownVideos) {
+          const slide = document.createElement('div');
+          slide.className = 'video-slide';
+          slide.innerHTML = `
+            <video preload="metadata" muted loop playsinline controls>
+              <source src="${video}" type="video/mp4">
+            </video>
+          `;
+          videoTrack.appendChild(slide);
+        }
+      }
+
+      // Load images into media grid
+      const mediaGrid = document.querySelector('.media-grid');
+      if (mediaGrid) {
+        mediaGrid.innerHTML = '';
+        for (const img of knownImages) {
+          const imgEl = document.createElement('img');
+          imgEl.src = img;
+          imgEl.alt = 'Egg Cover product image';
+          imgEl.onerror = function() { this.style.display = 'none'; };
+          mediaGrid.appendChild(imgEl);
+        }
+      }
+    }
+
+    // Initialize media files
+    loadMediaFiles();
+
     // Video Carousel with Touch Support
     (function () {
-      const root = document.getElementById('videoCarousel');
-      if (!root) return;
-      const track = root.querySelector('.video-track');
-      const slides = Array.from(root.querySelectorAll('.video-slide'));
-      const prev = root.querySelector('.vc-btn.prev');
-      const next = root.querySelector('.vc-btn.next');
-      const dotsWrap = root.querySelector('.vc-dots');
+      // Wait a bit for videos to load
+      setTimeout(() => {
+        const root = document.getElementById('videoCarousel');
+        if (!root) return;
+        const track = root.querySelector('.video-track');
+        const slides = Array.from(root.querySelectorAll('.video-slide'));
+        if (slides.length === 0) return;
+        const prev = root.querySelector('.vc-btn.prev');
+        const next = root.querySelector('.vc-btn.next');
+        const dotsWrap = root.querySelector('.vc-dots');
 
-      let i = 0, timer = null, intervalMs = 6000, userInteracted = false;
-      let touchStartX = 0, touchEndX = 0;
+        let i = 0, timer = null, intervalMs = 6000, userInteracted = false;
+        let touchStartX = 0, touchEndX = 0;
 
-      slides.forEach((_, idx) => {
-        const b = document.createElement('button');
-        b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
-        b.addEventListener('click', () => { userInteracted = true; go(idx); });
-        dotsWrap.appendChild(b);
-      });
-
-      function setActive(idx) {
-        slides.forEach((s, j) => s.classList.toggle('is-active', j === idx));
-        Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
-      }
-
-      function go(idx) {
-        i = (idx + slides.length) % slides.length;
-        track.style.transform = 'translateX(-' + (i * 100) + '%)';
-        slides.forEach((s, j) => {
-          const v = s.querySelector('video');
-          if (!v) return;
-          if (j === i) { v.play().catch(()=>{}); }
-          else { v.pause(); }
+        slides.forEach((_, idx) => {
+          const b = document.createElement('button');
+          b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
+          b.addEventListener('click', () => { userInteracted = true; go(idx); });
+          dotsWrap.appendChild(b);
         });
-        setActive(i);
-        restartTimer();
-      }
 
-      function nextSlide() { go(i + 1); }
-      function prevSlide() { go(i - 1); }
-
-      function startTimer() {
-        if (timer) clearInterval(timer);
-        timer = setInterval(() => { if (!userInteracted) nextSlide(); }, intervalMs);
-      }
-      function restartTimer() { userInteracted = false; startTimer(); }
-
-      next.addEventListener('click', () => { userInteracted = true; nextSlide(); });
-      prev.addEventListener('click', () => { userInteracted = true; prevSlide(); });
-
-      // Touch swipe support
-      root.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-        clearInterval(timer);
-      }, {passive: true});
-
-      root.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startTimer();
-      }, {passive: true});
-
-      function handleSwipe() {
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-          userInteracted = true;
-          if (diff > 0) nextSlide();
-          else prevSlide();
+        function setActive(idx) {
+          slides.forEach((s, j) => s.classList.toggle('is-active', j === idx));
+          Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
         }
-      }
 
-      root.addEventListener('mouseenter', () => clearInterval(timer));
-      root.addEventListener('mouseleave', startTimer);
+        function go(idx) {
+          i = (idx + slides.length) % slides.length;
+          track.style.transform = 'translateX(-' + (i * 100) + '%)';
+          slides.forEach((s, j) => {
+            const v = s.querySelector('video');
+            if (!v) return;
+            if (j === i) { 
+              // Ensure video is muted before playing
+              v.muted = true;
+              v.volume = 0;
+              v.play().catch(()=>{}); 
+            }
+            else { v.pause(); }
+          });
+          setActive(i);
+          restartTimer();
+        }
 
-      setActive(0);
-      slides.forEach(s => { const v = s.querySelector('video'); if (v) { v.muted = true; v.volume = 0; }});
-      startTimer();
-    })();
+        function nextSlide() { go(i + 1); }
+        function prevSlide() { go(i - 1); }
 
-    // Smooth scroll for nav links
-    document.querySelectorAll('nav a, .cta-button[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function startTimer() {
+          if (timer) clearInterval(timer);
+          timer = setInterval(() => { if (!userInteracted) nextSlide(); }, intervalMs);
+        }
+        function restartTimer() { userInteracted = false; startTimer(); }
+
+        next.addEventListener('click', () => { userInteracted = true; nextSlide(); });
+        prev.addEventListener('click', () => { userInteracted = true; prevSlide(); });
+
+        // Touch swipe support
+        root.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].screenX;
+          clearInterval(timer);
+        }, {passive: true});
+
+        root.addEventListener('touchend', e => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+          startTimer();
+        }, {passive: true});
+
+        function handleSwipe() {
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 50) {
+            userInteracted = true;
+            if (diff > 0) nextSlide();
+            else prevSlide();
           }
         }
-      });
-    });
 
-    // Scroll to top button
-    const scrollBtn = document.querySelector('.scroll-top');
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        scrollBtn.classList.add('visible');
-      } else {
-        scrollBtn.classList.remove('visible');
-      }
-    });
+        root.addEventListener('mouseenter', () => clearInterval(timer));
+        root.addEventListener('mouseleave', startTimer);
 
-    scrollBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Intersection
+        setActive(0);
+        // Ensure all videos start muted
+        slides.forEach(s => { 
+          const v = s.querySelector('video');
