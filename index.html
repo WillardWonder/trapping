@@ -3,92 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daddy Daughter Trapping Supplies</title>
+  <meta name="description" content="Daddy Daughter Trapping Supplies - Wisconsin Licensed Trappers offering The Egg Cover for DP coon traps. Keep your bait dry and lures working.">
+  <title>Daddy Daughter Trapping Supplies | The Egg Cover</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #1a1a1a; background: #f4f1ea; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1a1a1a; background: #f4f1ea; }
 
-    header { background: #2d2d2d; color: #f4f1ea; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #c17a3c; }
+    /* Header */
+    header { background: #2d2d2d; color: #f4f1ea; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #c17a3c; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
     .logo-section { display: flex; align-items: center; gap: 1.5rem; }
-    .logo { width: 80px; height: 80px; }
+    .logo { width: 80px; height: 80px; border-radius: 4px; border: 2px solid #c17a3c; }
     h1 { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #f4f1ea; }
-    .tagline { font-size: .9rem; color: #c17a3c; text-transform: uppercase; letter-spacing: 2px; margin-top: .25rem; }
+    .tagline { font-size: .9rem; color: #c17a3c; text-transform: uppercase; letter-spacing: 2px; margin-top: .25rem; font-weight: 600; }
 
-    nav { background: #1a1a1a; padding: 0; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
-    nav a { color: #f4f1ea; text-decoration: none; padding: 1rem 2rem; display: inline-block; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: .95rem; transition: background .3s; }
-    nav a:hover { background: #c17a3c; }
+    /* Navigation */
+    nav { background: #1a1a1a; padding: 0; box-shadow: 0 2px 10px rgba(0,0,0,.3); position: sticky; top: 110px; z-index: 99; }
+    nav a { color: #f4f1ea; text-decoration: none; padding: 1rem 2rem; display: inline-block; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: .95rem; transition: all .3s; border-bottom: 3px solid transparent; }
+    nav a:hover { background: #c17a3c; border-bottom-color: #f4f1ea; transform: translateY(-2px); }
 
-    .hero { background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('hero.png'); background-size: cover; background-position: center; color: #fff; padding: 6rem 2rem; text-align: center; border-bottom: 6px solid #c17a3c; }
-    .hero h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 6px rgba(0,0,0,.8); letter-spacing: 2px; }
-    .hero p { font-size: 1.4rem; max-width: 900px; margin: 0 auto; font-weight: 500; text-shadow: 2px 2px 4px rgba(0,0,0,.8); }
+    /* Hero */
+    .hero { background: linear-gradient(135deg, rgba(45,45,45,.85), rgba(193,122,60,.75)), url('hero.png'); background-size: cover; background-position: center; background-attachment: fixed; color: #fff; padding: 6rem 2rem; text-align: center; border-bottom: 6px solid #c17a3c; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(193,122,60,.2), transparent 50%); }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: 900; text-transform: uppercase; text-shadow: 3px 3px 8px rgba(0,0,0,.9); letter-spacing: 3px; animation: fadeInUp .8s ease; }
+    .hero p { font-size: 1.4rem; max-width: 900px; margin: 0 auto; font-weight: 500; text-shadow: 2px 2px 6px rgba(0,0,0,.9); animation: fadeInUp 1s ease; }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 3.25rem 3rem 2rem; } /* bigger right-side buffer */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    .section { margin-bottom: 4rem; }
-    .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 3.25rem 3rem 2rem; }
 
-    /* optional section banners (drop in images with these names or edit URLs below) */
-    .section-banner { min-height: 220px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); background: #e8e1d4 center/cover no-repeat; }
+    /* Sections */
+    .section { margin-bottom: 4rem; animation: fadeIn .8s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; position: relative; }
+    .section-title::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 60%; height: 4px; background: #2d2d2d; }
+
+    .section-banner { min-height: 280px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 6px 20px rgba(0,0,0,.25); background: #e8e1d4 center/cover no-repeat; border-radius: 4px; transition: transform .3s; }
+    .section-banner:hover { transform: scale(1.01); }
     .banner-product { background-image: url('banner-product.jpg'); }
-    .banner-media   { background-image: url('banner-media.jpg'); }
-    .banner-story   { background-image: url('banner-story.jpg'); }
+    .banner-media { background-image: url('banner-media.jpg'); }
+    .banner-story { background-image: url('banner-story.jpg'); }
 
-    /* product block */
-    .product-showcase { background: #fff; padding: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-left: 8px solid #c17a3c; }
+    /* Product Showcase */
+    .product-showcase { background: #fff; padding: 3rem; box-shadow: 0 6px 25px rgba(0,0,0,.18); border-left: 8px solid #c17a3c; border-radius: 4px; transition: box-shadow .3s; }
+    .product-showcase:hover { box-shadow: 0 8px 35px rgba(0,0,0,.25); }
     .product-grid { display: grid; grid-template-columns: 45% 55%; gap: 3rem; align-items: start; }
 
     .product-images { display: grid; gap: 1rem; }
-    .product-images img, .product-images video { width: 100%; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); }
+    .product-images img, .product-images video { width: 100%; height: 400px; object-fit: cover; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
+    .product-images img:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
     .product-images video { background: #000; }
 
     .product-details h3 { font-size: 2.2rem; color: #2d2d2d; margin-bottom: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
-    .product-details .subtitle { font-size: 1.2rem; color: #c17a3c; font-weight: bold; margin-bottom: 1.5rem; text-transform: uppercase; }
-    .product-details p { font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.7; }
+    .product-details .subtitle { font-size: 1.2rem; color: #c17a3c; font-weight: bold; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+    .product-details p { font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.8; }
 
-    .features { list-style: none; margin: 2rem 0; background: #f4f1ea; padding: 1.5rem; border-left: 4px solid #c17a3c; }
-    .features li { padding: .7rem 0 .7rem 2rem; position: relative; font-size: 1.05rem; font-weight: 500; }
+    .features { list-style: none; margin: 2rem 0; background: linear-gradient(135deg, #f4f1ea, #e8e1d4); padding: 1.5rem; border-left: 6px solid #c17a3c; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,.1); }
+    .features li { padding: .7rem 0 .7rem 2rem; position: relative; font-size: 1.05rem; font-weight: 500; transition: transform .2s; }
+    .features li:hover { transform: translateX(5px); }
     .features li:before { content: "■"; position: absolute; left: 0; color: #c17a3c; font-weight: bold; font-size: 1.2rem; }
 
-    .problem-solution { background: #2d2d2d; color: #f4f1ea; padding: 1.5rem; margin-top: 2rem; border-left: 6px solid #c17a3c; }
-    .problem-solution strong { color: #c17a3c; font-size: 1.1rem; }
+    .problem-solution { background: linear-gradient(135deg, #2d2d2d, #1a1a1a); color: #f4f1ea; padding: 1.5rem; margin-top: 2rem; border-left: 6px solid #c17a3c; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,.3); }
+    .problem-solution p { margin-bottom: .8rem; }
+    .problem-solution p:last-child { margin-bottom: 0; }
+    .problem-solution strong { color: #c17a3c; font-size: 1.1rem; display: block; margin-bottom: .3rem; }
 
-    /* more media section */
-    .media-showcase { background:#fff; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-left: 8px solid #c17a3c; }
+    /* Media Showcase */
+    .media-showcase { background:#fff; padding: 2rem; box-shadow: 0 6px 25px rgba(0,0,0,.18); border-left: 8px solid #c17a3c; border-radius: 4px; }
     .media-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .media-grid img { width:100%; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); }
+    .media-grid img { width:100%; height: 280px; object-fit: cover; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
+    .media-grid img:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
 
-    .cta-section { background: #c17a3c; color: #fff; padding: 4rem 3rem; text-align: center; margin: 3rem 0; box-shadow: 0 4px 20px rgba(0,0,0,.2); }
-    .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; }
-    .cta-button { display: inline-block; background: #2d2d2d; color: #f4f1ea; padding: 1.2rem 3rem; text-decoration: none; font-size: 1.2rem; font-weight: 900; margin-top: 1.5rem; transition: all .3s; text-transform: uppercase; letter-spacing: 2px; border: 3px solid #2d2d2d; }
-    .cta-button:hover { background: #f4f1ea; color: #2d2d2d; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
-
-    footer { background: #1a1a1a; color: #f4f1ea; text-align: center; padding: 2rem; border-top: 4px solid #c17a3c; }
-    footer a { color: #c17a3c; text-decoration: none; font-weight: bold; }
-
-    /* ---- Video carousel ---- */
-    .video-carousel { position: relative; overflow: hidden; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); background:#000; }
+    /* Video Carousel */
+    .video-carousel { position: relative; overflow: hidden; border: 3px solid #2d2d2d; box-shadow: 0 6px 20px rgba(0,0,0,.25); background:#000; margin-bottom: 1.5rem; border-radius: 4px; touch-action: pan-y; }
     .video-track { display: flex; transition: transform .45s ease; }
     .video-slide { min-width: 100%; }
     .video-slide video { width: 100%; height: auto; display: block; background:#000; }
 
-    .vc-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.55); color:#fff; border:none; padding:.6rem 1rem; cursor:pointer; font-size:1.2rem; }
-    .vc-btn:hover { background:rgba(0,0,0,.8); }
-    .vc-btn.prev { left:.5rem; }
-    .vc-btn.next { right:.5rem; }
+    .vc-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(45,45,45,.75); color:#fff; border:2px solid #c17a3c; padding:.8rem 1.2rem; cursor:pointer; font-size:1.3rem; border-radius: 4px; transition: all .3s; z-index: 10; font-weight: bold; }
+    .vc-btn:hover { background:rgba(193,122,60,.9); transform: translateY(-50%) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+    .vc-btn.prev { left:.8rem; }
+    .vc-btn.next { right:.8rem; }
 
-    .vc-dots { position:absolute; left:0; right:0; bottom:.5rem; display:flex; gap:.4rem; justify-content:center; }
-    .vc-dots button { width:.6rem; height:.6rem; border-radius:50%; border:0; background:rgba(255,255,255,.45); cursor:pointer; }
-    .vc-dots button.is-active { background:#c17a3c; }
+    .vc-dots { position:absolute; left:0; right:0; bottom:.8rem; display:flex; gap:.5rem; justify-content:center; z-index: 10; }
+    .vc-dots button { width:.75rem; height:.75rem; border-radius:50%; border:2px solid #fff; background:rgba(255,255,255,.5); cursor:pointer; transition: all .3s; }
+    .vc-dots button:hover { background:rgba(255,255,255,.8); transform: scale(1.2); }
+    .vc-dots button.is-active { background:#c17a3c; border-color: #c17a3c; transform: scale(1.15); }
+
+    /* Story Section */
+    .story-section { background: #fff; padding: 2.5rem; border-left: 8px solid #c17a3c; box-shadow: 0 6px 25px rgba(0,0,0,.18); margin-bottom: 2rem; border-radius: 4px; }
+    .story-section p { font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; }
+    .story-section p:last-child { margin-bottom: 0; font-weight: 600; color: #c17a3c; font-size: 1.15rem; }
+    .story-section strong { color: #2d2d2d; font-weight: 700; }
+
+    .family-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .value-card { background: linear-gradient(135deg, #fff, #f4f1ea); padding: 2rem; border: 3px solid #2d2d2d; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,.15); transition: all .3s; position: relative; overflow: hidden; }
+    .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #c17a3c, #2d2d2d); }
+    .value-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,.25); border-color: #c17a3c; }
+    .value-card h3 { font-size: 1.5rem; color: #2d2d2d; margin-bottom: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+    .value-card p { font-size: 1rem; line-height: 1.7; color: #333; }
+
+    /* CTA Section */
+    .cta-section { background: linear-gradient(135deg, #c17a3c, #a06530); color: #fff; padding: 4rem 3rem; text-align: center; margin: 3rem 0; box-shadow: 0 6px 25px rgba(0,0,0,.25); border-radius: 4px; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,.1), transparent 50%); animation: pulse 8s ease-in-out infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: .5; }
+      50% { transform: scale(1.1); opacity: .8; }
+    }
+    .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; position: relative; z-index: 1; }
+    .cta-section p { position: relative; z-index: 1; }
+    .cta-button { display: inline-block; background: #2d2d2d; color: #f4f1ea; padding: 1.2rem 3rem; text-decoration: none; font-size: 1.2rem; font-weight: 900; margin-top: 1.5rem; transition: all .3s; text-transform: uppercase; letter-spacing: 2px; border: 3px solid #2d2d2d; border-radius: 4px; position: relative; z-index: 1; box-shadow: 0 4px 15px rgba(0,0,0,.3); }
+    .cta-button:hover { background: #f4f1ea; color: #2d2d2d; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,.4); }
+
+    /* Footer */
+    footer { background: #1a1a1a; color: #f4f1ea; text-align: center; padding: 2.5rem; border-top: 4px solid #c17a3c; }
+    footer a { color: #c17a3c; text-decoration: none; font-weight: bold; transition: color .3s; }
+    footer a:hover { color: #d88d4f; text-decoration: underline; }
+
+    /* Scroll to top button */
+    .scroll-top { position: fixed; bottom: 2rem; right: 2rem; background: #c17a3c; color: #fff; width: 50px; height: 50px; border-radius: 50%; border: 3px solid #2d2d2d; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all .3s; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,.3); }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { background: #2d2d2d; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.4); }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .family-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    }
 
     @media (max-width: 768px) {
-      .container { padding: 2rem 1.25rem; } /* still comfy on mobile */
-      .product-grid { grid-template-columns: 1fr; }
-      .family-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 1.5rem; }
+      .container { padding: 2rem 1.25rem; }
+      h1 { font-size: 1.4rem; }
+      .tagline { font-size: .8rem; }
       .hero h2 { font-size: 2rem; }
+      .hero p { font-size: 1.1rem; }
+      nav { position: static; }
       nav a { display: block; padding: 1rem; border-bottom: 1px solid #2d2d2d; }
-      header { flex-direction: column; text-align: center; }
-      .logo-section { flex-direction: column; }
+      header { flex-direction: column; text-align: center; position: relative; }
+      .logo-section { flex-direction: column; gap: 1rem; }
+      .section-title { font-size: 2rem; }
+      .vc-btn { padding: .6rem .9rem; font-size: 1.1rem; }
+      .scroll-top { bottom: 1rem; right: 1rem; width: 45px; height: 45px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.2rem; }
+      .hero h2 { font-size: 1.6rem; }
+      .section-title { font-size: 1.6rem; }
+      .product-details h3 { font-size: 1.8rem; }
+      .cta-section h2 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -111,25 +181,25 @@
   </nav>
 
   <div class="hero">
-    <h2>Families That Trap Together, Stay Together</h2>
-    <p>Wisconsin Licensed Trappers | Building Memories in the Field</p>
+    <div class="hero-content">
+      <h2>Families That Trap Together, Stay Together</h2>
+      <p>Wisconsin Licensed Trappers | Building Memories in the Field</p>
+    </div>
   </div>
 
   <div class="container">
-    <!-- PRODUCT (top block: only 2 images next to copy) -->
+    <!-- PRODUCT -->
     <section id="product" class="section">
       <h2 class="section-title">Introducing The Egg Cover</h2>
       <div class="section-banner banner-product" aria-hidden="true"></div>
 
       <div class="product-showcase">
         <div class="product-grid">
-          <!-- Left: two images -->
           <div class="product-images">
             <img src="trapcover.png" alt="Egg Cover trap cover">
             <img src="product3.png" alt="Egg Cover in field setting">
           </div>
 
-          <!-- Right: details -->
           <div class="product-details">
             <h3>The Egg Cover</h3>
             <div class="subtitle">For DP Coon Traps</div>
@@ -153,41 +223,23 @@
       </div>
     </section>
 
-    <!-- MORE MEDIA (separate section below) -->
+    <!-- MEDIA -->
     <section id="media" class="section">
       <h2 class="section-title">More Views & Demo</h2>
       <div class="section-banner banner-media" aria-hidden="true"></div>
 
       <div class="media-showcase">
-        <!-- video carousel full-width -->
         <div class="video-carousel" id="videoCarousel">
           <div class="video-track">
-            <div class="video-slide is-active">
-              <video preload="metadata" autoplay muted loop playsinline controls>
-                <source src="eggs1.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide">
-              <video preload="metadata" autoplay muted loop playsinline controls>
-                <source src="eggs2.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-slide">
-              <video preload="metadata" autoplay muted loop playsinline controls>
-                <source src="eggs3.mp4" type="video/mp4">
-              </video>
-            </div>
+            <!-- Videos will be automatically loaded here -->
           </div>
           <button class="vc-btn prev" aria-label="Previous video">&#10094;</button>
           <button class="vc-btn next" aria-label="Next video">&#10095;</button>
           <div class="vc-dots" aria-label="Slide dots"></div>
         </div>
 
-        <!-- image grid below the carousel -->
         <div class="media-grid">
-          <img src="product2.png" alt="Egg Cover showing design">
-          <img src="product1.png" alt="Egg Cover with raccoon">
-          <img src="product4.png" alt="Egg Cover alternate angle">
+          <!-- Images will be automatically loaded here -->
         </div>
       </div>
     </section>
@@ -243,68 +295,180 @@
     <p style="margin-top: 1rem;">&copy; 2025 | Tight Chains Everyone!</p>
   </footer>
 
-  <!-- Video carousel script -->
+  <button class="scroll-top" aria-label="Scroll to top">&#8593;</button>
+
   <script>
+    // Auto-load all videos and images from repository
+    async function loadMediaFiles() {
+      // List your video and image files here - just add new ones to these arrays!
+      const knownVideos = ['ad1.mp4', 'eggs1.mp4', 'eggs2.mp4', 'eggs3.mp4', 'eggs4.mp4', 'egg5.mp4', 'egg6.mp4', 'egg7.mp4','egg8.mp4', 'egg9.mp4', 'egg10.mp4', 'egg11.mp4', 'egg12.mp4','egg14.mp4', 'ad2.mp4'];
+      const knownImages = ['product1.png', 'product2.png', 'product3.png', 'product4.png'];
+      
+      // Load videos into carousel
+      const videoTrack = document.querySelector('#videoCarousel .video-track');
+      if (videoTrack) {
+        videoTrack.innerHTML = '';
+        for (const video of knownVideos) {
+          const slide = document.createElement('div');
+          slide.className = 'video-slide';
+          slide.innerHTML = `
+            <video preload="metadata" muted loop playsinline controls>
+              <source src="${video}" type="video/mp4">
+            </video>
+          `;
+          videoTrack.appendChild(slide);
+        }
+      }
+
+      // Load images into media grid
+      const mediaGrid = document.querySelector('.media-grid');
+      if (mediaGrid) {
+        mediaGrid.innerHTML = '';
+        for (const img of knownImages) {
+          const imgEl = document.createElement('img');
+          imgEl.src = img;
+          imgEl.alt = 'Egg Cover product image';
+          imgEl.onerror = function() { this.style.display = 'none'; };
+          mediaGrid.appendChild(imgEl);
+        }
+      }
+    }
+
+    // Initialize media files
+    loadMediaFiles();
+
+    // Video Carousel with Touch Support
     (function () {
-      const root = document.getElementById('videoCarousel');
-      if (!root) return;
-      const track = root.querySelector('.video-track');
-      const slides = Array.from(root.querySelectorAll('.video-slide'));
-      const prev = root.querySelector('.vc-btn.prev');
-      const next = root.querySelector('.vc-btn.next');
-      const dotsWrap = root.querySelector('.vc-dots');
+      // Wait a bit for videos to load
+      setTimeout(() => {
+        const root = document.getElementById('videoCarousel');
+        if (!root) return;
+        const track = root.querySelector('.video-track');
+        const slides = Array.from(root.querySelectorAll('.video-slide'));
+        if (slides.length === 0) return;
+        const prev = root.querySelector('.vc-btn.prev');
+        const next = root.querySelector('.vc-btn.next');
+        const dotsWrap = root.querySelector('.vc-dots');
 
-      let i = 0, timer = null, intervalMs = 6000, userInteracted = false;
+        let i = 0, timer = null, intervalMs = 6000, userInteracted = false;
+        let touchStartX = 0, touchEndX = 0;
 
-      // Build dots
-      slides.forEach((_, idx) => {
-        const b = document.createElement('button');
-        b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
-        b.addEventListener('click', () => { userInteracted = true; go(idx); });
-        dotsWrap.appendChild(b);
-      });
-
-      function setActive(idx) {
-        slides.forEach((s, j) => s.classList.toggle('is-active', j === idx));
-        Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
-      }
-
-      function go(idx) {
-        i = (idx + slides.length) % slides.length;
-        track.style.transform = 'translateX(-' + (i * 100) + '%)';
-        slides.forEach((s, j) => {
-          const v = s.querySelector('video');
-          if (!v) return;
-          if (j === i) { v.play().catch(()=>{}); }
-          else { v.pause(); }
+        slides.forEach((_, idx) => {
+          const b = document.createElement('button');
+          b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
+          b.addEventListener('click', () => { userInteracted = true; go(idx); });
+          dotsWrap.appendChild(b);
         });
-        setActive(i);
-        restartTimer();
-      }
 
-      function nextSlide() { go(i + 1); }
-      function prevSlide() { go(i - 1); }
+        function setActive(idx) {
+          slides.forEach((s, j) => s.classList.toggle('is-active', j === idx));
+          Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
+        }
 
-      function startTimer() {
-        if (timer) clearInterval(timer);
-        timer = setInterval(() => { if (!userInteracted) nextSlide(); }, intervalMs);
-      }
-      function restartTimer() { userInteracted = false; startTimer(); }
+        function go(idx) {
+          i = (idx + slides.length) % slides.length;
+          track.style.transform = 'translateX(-' + (i * 100) + '%)';
+          slides.forEach((s, j) => {
+            const v = s.querySelector('video');
+            if (!v) return;
+            if (j === i) { 
+              // Start muted, but allow user to unmute
+              if (!v.hasAttribute('data-user-unmuted')) {
+                v.muted = false;
+              }
+              v.play().catch(()=>{}); 
+            }
+            else { 
+              v.pause(); 
+            }
+          });
+          setActive(i);
+          restartTimer();
+        }
 
-      next.addEventListener('click', () => { userInteracted = true; nextSlide(); });
-      prev.addEventListener('click', () => { userInteracted = true; prevSlide(); });
+        function nextSlide() { go(i + 1); }
+        function prevSlide() { go(i - 1); }
 
-      root.addEventListener('mouseenter', () => clearInterval(timer));
-      root.addEventListener('mouseleave', startTimer);
-      root.addEventListener('touchstart', () => clearInterval(timer), {passive:true});
-      root.addEventListener('touchend', startTimer);
+        function startTimer() {
+          if (timer) clearInterval(timer);
+          timer = setInterval(() => { if (!userInteracted) nextSlide(); }, intervalMs);
+        }
+        function restartTimer() { userInteracted = false; startTimer(); }
 
-      // init
-      setActive(0);
-      // ensure initial videos are muted + playing appropriately
-      slides.forEach(s => { const v = s.querySelector('video'); if (v) { v.muted = true; v.volume = 0; }});
-      startTimer();
+        next.addEventListener('click', () => { userInteracted = true; nextSlide(); });
+        prev.addEventListener('click', () => { userInteracted = true; prevSlide(); });
+
+        // Touch swipe support
+        root.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].screenX;
+          clearInterval(timer);
+        }, {passive: true});
+
+        root.addEventListener('touchend', e => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+          startTimer();
+        }, {passive: true});
+
+        function handleSwipe() {
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 50) {
+            userInteracted = true;
+            if (diff > 0) nextSlide();
+            else prevSlide();
+          }
+        }
+
+        root.addEventListener('mouseenter', () => clearInterval(timer));
+        root.addEventListener('mouseleave', startTimer);
+
+        setActive(0);
+        // Set all videos to start muted, but allow user control
+        slides.forEach(s => { 
+          const v = s.querySelector('video'); 
+          if (v) { 
+            v.muted = true;
+            // Track when user manually unmutes
+            v.addEventListener('volumechange', function() {
+              if (!v.muted) {
+                v.setAttribute('data-user-unmuted', 'true');
+              } else {
+                v.removeAttribute('data-user-unmuted');
+              }
+            });
+          }
+        });
+        startTimer();
+      }, 300);
     })();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a, .cta-button[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Scroll to top button
+    const scrollBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
