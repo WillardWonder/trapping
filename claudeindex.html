@@ -422,4 +422,50 @@
         setActive(0);
         // Ensure all videos start muted
         slides.forEach(s => { 
-          const v = s.querySelector('video');
+          const v = s.querySelector('video'); 
+          if (v) { 
+            v.muted = true; 
+            v.volume = 0;
+            // Prevent unmuting even if user tries to unmute via context menu
+            v.addEventListener('volumechange', function() {
+              if (!v.muted) {
+                v.muted = true;
+              }
+            });
+          }
+        });
+        startTimer();
+      }, 300);
+    })();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a, .cta-button[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Scroll to top button
+    const scrollBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html> 
+          
