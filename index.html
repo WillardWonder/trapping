@@ -160,6 +160,80 @@
       .product-details h3 { font-size: 1.8rem; }
       .cta-section h2 { font-size: 2rem; }
     }
+
+    /* Pricing / Order (NEW) */
+    .pricing-wrap { margin: 2rem 0 4rem; }
+    .pricing-card {
+      background: #fff;
+      padding: 2rem;
+      border-left: 8px solid #c17a3c;
+      border-radius: 4px;
+      box-shadow: 0 6px 25px rgba(0,0,0,.18);
+    }
+    .pricing-card h3 {
+      font-size: 1.8rem;
+      color: #2d2d2d;
+      margin-bottom: .75rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .price-tile {
+      background: linear-gradient(135deg, #f4f1ea, #e8e1d4);
+      border: 3px solid #2d2d2d;
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,.15);
+      text-align: center;
+    }
+    .price-tile .big {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #2d2d2d;
+    }
+    .price-tile .sub {
+      font-weight: 700;
+      color: #c17a3c;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .order-note {
+      background: #2d2d2d;
+      color: #f4f1ea;
+      padding: 1rem 1.25rem;
+      border-left: 6px solid #c17a3c;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-size: 0.98rem;
+    }
+    .order-button {
+      display: inline-block;
+      background: #2d2d2d;
+      color: #f4f1ea;
+      padding: 0.9rem 1.4rem;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 3px solid #2d2d2d;
+      border-radius: 4px;
+      transition: all .3s;
+      margin-top: .5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,.3);
+    }
+    .order-button:hover {
+      background: #f4f1ea;
+      color: #2d2d2d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,.4);
+    }
   </style>
 </head>
 <body>
@@ -221,6 +295,32 @@
           </div>
         </div>
       </div>
+
+      <!-- PRICING / ORDER (NEW) -->
+      <div id="pricing" class="pricing-wrap">
+        <div class="pricing-card">
+          <h3>Pricing</h3>
+          <div class="price-grid">
+            <div class="price-tile">
+              <div class="big">$6</div>
+              <div class="sub">Per Egg</div>
+            </div>
+            <div class="price-tile">
+              <div class="big">$60</div>
+              <div class="sub">12 Eggs</div>
+            </div>
+          </div>
+
+          <a href="https://m.me/daddy.daughter.trapping" target="_blank" rel="noopener" class="order-button" id="orderBtn" aria-label="Contact us to order on Facebook Messenger">
+            Contact us to order
+          </a>
+
+          <div class="order-note">
+            Clicking the button opens Facebook Messenger to our page and copies a starter message. Paste it in, tell us how many you want, and we’ll reply with the order form &amp; payment options.
+          </div>
+        </div>
+      </div>
+      <!-- END PRICING / ORDER -->
     </section>
 
     <!-- MEDIA -->
@@ -469,6 +569,34 @@
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Order button: open Messenger + copy prefilled message (NEW)
+    (function () {
+      const ORDER_MESSAGE = "Hi, I am interested in catching more coons and purchasing some Egg Toppers. I'd like to order: [enter quantity]. Please send the order form and payment options. Thank you!";
+
+      const orderBtn = document.getElementById('orderBtn');
+      if (!orderBtn) return;
+
+      orderBtn.addEventListener('click', async function () {
+        // Try to copy the message for the user to paste
+        let copied = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(ORDER_MESSAGE);
+            copied = true;
+          }
+        } catch (_) { /* noop */ }
+
+        // Quick heads-up so users know what to do next
+        setTimeout(() => {
+          const msg = copied
+            ? "I copied a starter message to your clipboard. Paste it into Messenger, add quantity, and we’ll send the order form & payment options."
+            : "Messenger will open. If nothing is copied, please send this: \n\n" + ORDER_MESSAGE;
+          alert(msg);
+        }, 250);
+        // Link itself opens a new tab to Messenger via href
+      });
+    })();
   </script>
 </body>
 </html>
