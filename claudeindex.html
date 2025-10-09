@@ -45,7 +45,7 @@
     .section-title { font-size: 2.5rem; color: #2d2d2d; margin-bottom: 1rem; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; border-bottom: 4px solid #c17a3c; padding-bottom: .5rem; display: inline-block; position: relative; }
     .section-title::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 60%; height: 4px; background: #2d2d2d; }
 
-    .section-banner { min-height: 220px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 6px 20px rgba(0,0,0,.25); background: #e8e1d4 center/contain no-repeat; border-radius: 4px; transition: transform .3s; }
+    .section-banner { min-height: 280px; margin: 1.25rem 0 2rem; border: 3px solid #2d2d2d; box-shadow: 0 6px 20px rgba(0,0,0,.25); background: #e8e1d4 center/cover no-repeat; border-radius: 4px; transition: transform .3s; }
     .section-banner:hover { transform: scale(1.01); }
     .banner-product { background-image: url('banner-product.jpg'); }
     .banner-media { background-image: url('banner-media.jpg'); }
@@ -57,7 +57,7 @@
     .product-grid { display: grid; grid-template-columns: 45% 55%; gap: 3rem; align-items: start; }
 
     .product-images { display: grid; gap: 1rem; }
-    .product-images img, .product-images video { width: 100%; height: 100%; object-fit: contain; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
+    .product-images img, .product-images video { width: 100%; height: 400px; object-fit: cover; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
     .product-images img:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
     .product-images video { background: #000; }
 
@@ -78,7 +78,7 @@
     /* Media Showcase */
     .media-showcase { background:#fff; padding: 2rem; box-shadow: 0 6px 25px rgba(0,0,0,.18); border-left: 8px solid #c17a3c; border-radius: 4px; }
     .media-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .media-grid img { width:100%; height: 300px; object-fit: contain; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
+    .media-grid img { width:100%; height: 280px; object-fit: cover; border: 3px solid #2d2d2d; box-shadow: 0 4px 15px rgba(0,0,0,.2); border-radius: 4px; transition: transform .3s, box-shadow .3s; background: #e8e1d4; }
     .media-grid img:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
 
     /* Video Carousel */
@@ -301,7 +301,7 @@
     // Auto-load all videos and images from repository
     async function loadMediaFiles() {
       // List your video and image files here - just add new ones to these arrays!
-      const knownVideos = ['ad1.mp4','eggs1.mp4', 'eggs2.mp4', 'eggs3.mp4', 'eggs4.mp4', 'egg5.mp4', 'egg6.mp4','egg7.mp4','egg8.mp4','egg9.mp4','egg10.mp4','egg11.mp4',];
+      const knownVideos = ['ad1.mp4', 'eggs1.mp4', 'eggs2.mp4', 'eggs3.mp4', 'eggs4.mp4', 'egg5.mp4', 'egg6.mp4', 'egg7.mp4', 'egg8.mp4', 'egg9.mp4', 'egg10.mp4', 'egg11.mp4'];
       const knownImages = ['product1.png', 'product2.png', 'product3.png', 'product4.png'];
       
       // Load videos into carousel
@@ -372,12 +372,15 @@
             const v = s.querySelector('video');
             if (!v) return;
             if (j === i) { 
-              // Ensure video is muted before playing
-              v.muted = true;
-              v.volume = 0;
+              // Start muted, but allow user to unmute
+              if (!v.hasAttribute('data-user-unmuted')) {
+                v.muted = true;
+              }
               v.play().catch(()=>{}); 
             }
-            else { v.pause(); }
+            else { 
+              v.pause(); 
+            }
           });
           setActive(i);
           restartTimer();
@@ -420,16 +423,17 @@
         root.addEventListener('mouseleave', startTimer);
 
         setActive(0);
-        // Ensure all videos start muted
+        // Set all videos to start muted, but allow user control
         slides.forEach(s => { 
           const v = s.querySelector('video'); 
           if (v) { 
-            v.muted = true; 
-            v.volume = 0;
-            // Prevent unmuting even if user tries to unmute via context menu
+            v.muted = true;
+            // Track when user manually unmutes
             v.addEventListener('volumechange', function() {
               if (!v.muted) {
-                v.muted = true;
+                v.setAttribute('data-user-unmuted', 'true');
+              } else {
+                v.removeAttribute('data-user-unmuted');
               }
             });
           }
@@ -467,5 +471,4 @@
     });
   </script>
 </body>
-</html> 
-          
+</html>
