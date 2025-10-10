@@ -316,7 +316,7 @@
           </a>
 
           <div class="order-note">
-            Clicking the button opens Facebook Messenger to our page and copies a starter message. Paste it in, tell us how many you want, and we’ll reply with the order form &amp; payment options.
+            Clicking the button opens Facebook Messenger to our page. Tell us how many you want, and we’ll reply with the order form &amp; payment options.
           </div>
         </div>
             <!--
@@ -749,7 +749,7 @@ EMBED INSTRUCTIONS
       const knownVideos = ['ad1.mp4', 'eggs1.mp4', 'eggs2.mp4', 'eggs3.mp4', 'eggs4.mp4', 'egg5.mp4', 'egg6.mp4', 'egg7.mp4','egg8.mp4', 'egg9.mp4', 'egg10.mp4', 'egg11.mp4', 'egg12.mp4','egg14.mp4', 'ad2.mp4'];
       const knownImages = ['product1.png', 'product2.png', 'product3.png', 'product4.png'];
       
-      // Load videos into carousel
+      // Load videos into carousel (muted, NOT looped, playsinline)
       const videoTrack = document.querySelector('#videoCarousel .video-track');
       if (videoTrack) {
         videoTrack.innerHTML = '';
@@ -757,7 +757,7 @@ EMBED INSTRUCTIONS
           const slide = document.createElement('div');
           slide.className = 'video-slide';
           slide.innerHTML = `
-            <video preload="metadata" muted loop playsinline controls>
+            <video preload="metadata" muted playsinline controls>
               <source src="${video}" type="video/mp4">
             </video>
           `;
@@ -782,108 +782,129 @@ EMBED INSTRUCTIONS
     // Initialize media files
     loadMediaFiles();
 
-    // Video Carousel with Touch Support
+    // Video Carousel with Touch Support (muted + let each video finish before switching)
     (function () {
-      // Wait a bit for videos to load
       setTimeout(() => {
         const root = document.getElementById('videoCarousel');
         if (!root) return;
-        const track = root.querySelector('.video-track');
-        const slides = Array.from(root.querySelectorAll('.video-slide'));
-        if (slides.length === 0) return;
-        const prev = root.querySelector('.vc-btn.prev');
-        const next = root.querySelector('.vc-btn.next');
+
+        const track    = root.querySelector('.video-track');
+        const prev     = root.querySelector('.vc-btn.prev');
+        const next     = root.querySelector('.vc-btn.next');
         const dotsWrap = root.querySelector('.vc-dots');
 
-        let i = 0, timer = null, intervalMs = 6000, userInteracted = false;
+        let slides = Array.from(root.querySelectorAll('.video-slide'));
+        if (slides.length === 0) return;
+
+        let i = 0;
+        let fallbackTimer = null;
         let touchStartX = 0, touchEndX = 0;
 
-        slides.forEach((_, idx) => {
-          const b = document.createElement('button');
-          b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
-          b.addEventListener('click', () => { userInteracted = true; go(idx); });
-          dotsWrap.appendChild(b);
-        });
+        // Build dots
+        if (dotsWrap) {
+          dotsWrap.innerHTML = '';
+          slides.forEach((_, idx) => {
+            const b = document.createElement('button');
+            b.setAttribute('aria-label', 'Go to video ' + (idx + 1));
+            b.addEventListener('click', () => go(idx));
+            dotsWrap.appendChild(b);
+          });
+        }
 
         function setActive(idx) {
           slides.forEach((s, j) => s.classList.toggle('is-active', j === idx));
-          Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
+          if (dotsWrap) {
+            Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle('is-active', j === idx));
+          }
+        }
+
+        function setupVideo(v) {
+          if (!v) return;
+          v.muted = true;
+          v.setAttribute('muted', '');
+          v.playsInline = true;
+          v.setAttribute('playsinline', '');
+          v.loop = false;            // allow 'ended' to fire
+          v.removeAttribute('loop');
+          v.preload = 'metadata';
+          v.controls = true;
+          v.onended = null;
+        }
+
+        // Configure all videos up front
+        slides.forEach(s => setupVideo(s.querySelector('video')));
+
+        function clearFallback() {
+          if (fallbackTimer) {
+            clearTimeout(fallbackTimer);
+            fallbackTimer = null;
+          }
+        }
+
+        function startFallbackFor(v) {
+          clearFallback();
+          if (!v) return;
+          const dur = (isFinite(v.duration) && v.duration > 0) ? v.duration : 45;
+          fallbackTimer = setTimeout(() => {
+            if (slides[i]?.querySelector('video') === v) nextSlide();
+          }, (dur + 2) * 1000);
         }
 
         function go(idx) {
+          slides = Array.from(root.querySelectorAll('.video-slide'));
           i = (idx + slides.length) % slides.length;
+
           track.style.transform = 'translateX(-' + (i * 100) + '%)';
+
           slides.forEach((s, j) => {
             const v = s.querySelector('video');
             if (!v) return;
-            if (j === i) { 
-              // Start muted, but allow user to unmute
-              if (!v.hasAttribute('data-user-unmuted')) {
-                v.muted = true;
-              }
-              v.play().catch(()=>{}); 
-            }
-            else { 
-              v.pause(); 
+
+            v.onended = null;
+
+            if (j === i) {
+              setupVideo(v);
+              try { v.currentTime = 0; } catch (_) {}
+              v.play().catch(()=>{});
+              v.onended = () => { clearFallback(); nextSlide(); };
+              startFallbackFor(v); // backup if 'ended' never fires
+            } else {
+              v.pause();
             }
           });
+
           setActive(i);
-          restartTimer();
         }
 
         function nextSlide() { go(i + 1); }
         function prevSlide() { go(i - 1); }
 
-        function startTimer() {
-          if (timer) clearInterval(timer);
-          timer = setInterval(() => { if (!userInteracted) nextSlide(); }, intervalMs);
-        }
-        function restartTimer() { userInteracted = false; startTimer(); }
-
-        next.addEventListener('click', () => { userInteracted = true; nextSlide(); });
-        prev.addEventListener('click', () => { userInteracted = true; prevSlide(); });
+        if (next) next.addEventListener('click', () => { clearFallback(); nextSlide(); });
+        if (prev) prev.addEventListener('click', () => { clearFallback(); prevSlide(); });
 
         // Touch swipe support
         root.addEventListener('touchstart', e => {
           touchStartX = e.changedTouches[0].screenX;
-          clearInterval(timer);
+          clearFallback();
         }, {passive: true});
 
         root.addEventListener('touchend', e => {
           touchEndX = e.changedTouches[0].screenX;
-          handleSwipe();
-          startTimer();
-        }, {passive: true});
-
-        function handleSwipe() {
           const diff = touchStartX - touchEndX;
           if (Math.abs(diff) > 50) {
-            userInteracted = true;
             if (diff > 0) nextSlide();
             else prevSlide();
           }
-        }
+          startFallbackFor(slides[i]?.querySelector('video'));
+        }, {passive: true});
 
-        root.addEventListener('mouseenter', () => clearInterval(timer));
-        root.addEventListener('mouseleave', startTimer);
+        // Optional: pause auto-advance while hovering
+        root.addEventListener('mouseenter', clearFallback);
+        root.addEventListener('mouseleave', () => startFallbackFor(slides[i]?.querySelector('video')));
 
+        // Start on first slide
         setActive(0);
-        // Set all videos to start muted, but allow user control
-        slides.forEach(s => { 
-          const v = s.querySelector('video'); 
-          if (v) { 
-            v.muted = true;
-            // Track when user manually unmutes
-            v.addEventListener('volumechange', function() {
-              if (!v.muted) {
-                v.setAttribute('data-user-unmuted', 'true');
-              } else {
-                v.removeAttribute('data-user-unmuted');
-              }
-            });
-          }
-        });
-        startTimer();
+        go(0);
       }, 300);
     })();
 
@@ -891,12 +912,10 @@ EMBED INSTRUCTIONS
     document.querySelectorAll('nav a, .cta-button[href^="#"]').forEach(link => {
       link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
-        if (href.startsWith('#')) {
+        if (href && href.startsWith('#')) {
           e.preventDefault();
           const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
@@ -914,34 +933,6 @@ EMBED INSTRUCTIONS
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
-    // Order button: open Messenger + copy prefilled message (NEW)
-    (function () {
-      const ORDER_MESSAGE = "Hi, I am interested in catching more coons and purchasing some Egg Toppers. I'd like to order: [enter quantity]. Please send the order form and payment options. Thank you!";
-
-      const orderBtn = document.getElementById('orderBtn');
-      if (!orderBtn) return;
-
-      orderBtn.addEventListener('click', async function () {
-        // Try to copy the message for the user to paste
-        let copied = false;
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(ORDER_MESSAGE);
-            copied = true;
-          }
-        } catch (_) { /* noop */ }
-
-        // Quick heads-up so users know what to do next
-        setTimeout(() => {
-          const msg = copied
-            ? "I copied a starter message to your clipboard. Paste it into Messenger, add quantity, and we’ll send the order form & payment options."
-            : "Messenger will open. If nothing is copied, please send this: \n\n" + ORDER_MESSAGE;
-          alert(msg);
-        }, 250);
-        // Link itself opens a new tab to Messenger via href
-      });
-    })();
   </script>
 </body>
 </html>
