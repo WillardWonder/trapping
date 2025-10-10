@@ -319,27 +319,44 @@
             Clicking the button opens Facebook Messenger to our page and copies a starter message. Paste it in, tell us how many you want, and we’ll reply with the order form &amp; payment options.
           </div>
         </div>
-      </div>
-      <!-- END PRICING / ORDER -->
-      <!--
+            <!--
 EMBED INSTRUCTIONS
 -------------------------------------------
-• Paste this snippet where you want the game to appear on your page.
-• To use your own raccoon image, add it to your repo and set data-raccoon="raccoon.png" (or any URL).
-• The Contact button reuses your site’s .order-button class and links to Messenger.
+• Paste this block anywhere on your page (e.g., under Pricing).
+• This wraps the game in a COLLAPSIBLE section (closed by default).
+• Set data-raccoon to your image path (e.g., raccoon.png). If missing, a clean SVG fallback is used.
+• Discount shows on GAME OVER only if you reached Level 5+.
+• Contact buttons reuse your site’s .order-button and open Messenger (no clipboard).
 -->
 
-<div id="egg-cover-game" class="egg-game" data-height="520" data-raccoon="raccoon.png" aria-label="Egg Cover Catch game"></div>
+<section id="egg-game-collapsible" class="section" aria-label="Egg Cover Game">
+  <button class="egg-toggle" type="button" aria-expanded="false" aria-controls="egg-game-panel">
+    ▶ Play the Egg Cover Catch (Raccoon) Game
+  </button>
+
+  <div id="egg-game-panel" class="egg-collapsible" hidden>
+    <div id="egg-cover-game" class="egg-game" data-height="520" data-raccoon="raccoon.png" aria-label="Egg Cover Catch game"></div>
+  </div>
+</section>
 
 <style>
-  /* Scoped to the game container */
-  .egg-game { position: relative; width: 100%; max-width: 900px; margin: 1rem auto; user-select:none; -webkit-user-select:none; }
-  .egg-game canvas { display:block; width:100%; height:auto; background: radial-gradient(1100px 520px at 20% -10%, #1b1b1b, #0c0c0c); border:2px solid #2d2d2d; border-left: 6px solid #c17a3c; border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
+  /* Collapsible UI (scoped) */
+  #egg-game-collapsible { margin: 1.5rem 0; }
+  .egg-toggle {
+    appearance:none; border:3px solid #2d2d2d; background:#2d2d2d; color:#f4f1ea; font-weight:900; text-transform:uppercase; letter-spacing:1px;
+    padding: .9rem 1.25rem; border-radius:6px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .egg-toggle:hover { background:#f4f1ea; color:#2d2d2d; transform:translateY(-2px); transition:all .2s; }
+  .egg-collapsible { margin-top: 1rem; }
+
+  /* Game styles (scoped) */
+  .egg-game { position: relative; width: 100%; max-width: 960px; margin: 0 auto; user-select:none; -webkit-user-select:none; }
+  .egg-game canvas { display:block; width:100%; height:auto; background: radial-gradient(1200px 560px at 20% -10%, #1b1b1b, #0c0c0c); border:2px solid #2d2d2d; border-left: 6px solid #c17a3c; border-radius: 12px; box-shadow: 0 14px 36px rgba(0,0,0,.35); }
   .egg-ui { position:absolute; inset:0; pointer-events:none; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#f4f1ea; }
   .egg-hud { position:absolute; left:10px; right:10px; top:10px; display:flex; gap:8px; justify-content:space-between; font-weight:800; text-shadow:0 2px 0 #000; flex-wrap:wrap; }
   .egg-pill { background: rgba(0,0,0,.45); padding:6px 10px; border-radius:999px; border:1px solid #333; }
   .egg-overlay { position:absolute; inset:0; display:grid; place-items:center; pointer-events:auto; }
-  .egg-panel { width:min(680px, 92%); background: linear-gradient(135deg, rgba(26,26,26,.94), rgba(12,12,12,.94)); border: 2px solid #2d2d2d; border-left: 8px solid #c17a3c; border-radius: 12px; box-shadow: 0 18px 48px rgba(0,0,0,.5); padding: clamp(14px, 3vw, 24px); animation: egg-drop .5s ease both; }
+  .egg-panel { width:min(720px, 92%); background: linear-gradient(135deg, rgba(26,26,26,.94), rgba(12,12,12,.94)); border: 2px solid #2d2d2d; border-left: 8px solid #c17a3c; border-radius: 12px; box-shadow: 0 18px 48px rgba(0,0,0,.5); padding: clamp(16px, 3vw, 26px); animation: egg-drop .5s ease both; }
   .egg-title { margin:0 0 6px; font-size: clamp(22px, 3.6vw, 38px); letter-spacing:.3px; }
   .egg-tag { color:#c17a3c; text-transform:uppercase; font-size:12px; letter-spacing:1.6px; }
   .egg-row { display:grid; gap:10px; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); margin:.75rem 0 1rem; }
@@ -349,6 +366,7 @@ EMBED INSTRUCTIONS
   .egg-btns { display:flex; gap:10px; flex-wrap:wrap; }
   .egg-btn { pointer-events:auto; appearance:none; border:0; cursor:pointer; font-weight:900; letter-spacing:.5px; text-transform:uppercase; border-radius:10px; padding:12px 16px; font-size:14px; background:#c17a3c; color:#fff; border:2px solid #2d2d2d; box-shadow:0 10px 24px rgba(193,122,60,.35); transition: transform .12s ease, filter .12s ease; text-decoration:none; display:inline-block; }
   .egg-btn:hover { transform: translateY(-1px); filter:brightness(1.05); }
+  .egg-btn.secondary { background:#242424; color:#f4f1ea; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
   .egg-help { color:#bbb; font-size:13px; margin-top:.5rem; }
   .egg-touch { position:absolute; bottom:0; width:50%; height:42%; display:none; }
   .egg-touch.left { left:0; }
@@ -356,293 +374,298 @@ EMBED INSTRUCTIONS
   @media (max-width:820px){ .egg-touch{ display:block; } }
   @keyframes egg-drop { from { transform: translateY(14px); opacity:0 } to { transform: translateY(0); opacity:1 } }
 
-  /* Fallback styling for the page's .order-button (kept scoped so it won't affect your site if you already style it) */
+  /* Optional fallback for .order-button to look decent inside the game UI if page style isn't available */
   .egg-game .order-button { display:inline-block; background:#2d2d2d; color:#f4f1ea; padding:0.9rem 1.4rem; text-decoration:none; font-size:1.05rem; font-weight:900; text-transform:uppercase; letter-spacing:1px; border:3px solid #2d2d2d; border-radius:4px; transition:all .3s; box-shadow:0 4px 15px rgba(0,0,0,.3); }
   .egg-game .order-button:hover { background:#f4f1ea; color:#2d2d2d; transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,.4); }
 </style>
 
 <script>
 (function(){
-  const container = document.getElementById('egg-cover-game');
-  if (!container) return;
-  container.tabIndex = 0;
+  // Collapsible behavior
+  const wrap = document.getElementById('egg-game-collapsible');
+  const toggle = wrap.querySelector('.egg-toggle');
+  const panel = document.getElementById('egg-game-panel');
+  let initialized = false;
 
-  // ---- Canvas + UI ----
-  const canvas = document.createElement('canvas');
-  const ui = document.createElement('div'); ui.className='egg-ui';
-  container.appendChild(canvas); container.appendChild(ui);
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open; // toggle
+    if (!open && !initialized) { initialized = true; mountGame(document.getElementById('egg-cover-game')); }
+  });
 
-  ui.innerHTML = `
-    <div class="egg-hud" aria-hidden="true">
-      <div class="egg-pill">Score: <span id="egScore">0</span></div>
-      <div class="egg-pill">High: <span id="egHigh">0</span></div>
-      <div class="egg-pill">Level: <span id="egLevel">1</span></div>
-    </div>
-    <div class="egg-overlay" id="egStart">
-      <div class="egg-panel">
-        <div class="egg-tag">Daddy Daughter Trapping</div>
-        <h2 class="egg-title">Egg Cover Catch</h2>
-        <p style="margin:.25rem 0 1rem; color:#ddd">Move the <b>raccoon</b> to catch Egg Toppers and avoid the rain.</p>
-        <div class="egg-row">
-          <div class="egg-price"><b>$6</b><br><small>Per Egg</small></div>
-          <div class="egg-price"><b>$60</b><br><small>12 Eggs</small></div>
-        </div>
-        <div style="margin:.25rem 0 .75rem">Controls: ← → or A/D • P to pause • Tap left/right on mobile</div>
-        <div class="egg-btns">
-          <button class="egg-btn" id="egStartBtn">Start</button>
-          <!-- Reuses your page's button class & exact Messenger link -->
-          <a class="order-button" href="https://m.me/daddy.daughter.trapping" target="_blank" rel="noopener">Contact us to order</a>
-        </div>
-        <div class="egg-help">Opens Facebook Messenger to our page.</div>
+  // Game mounts lazily when opened the first time
+  function mountGame(container){
+    container.tabIndex = 0;
+
+    const canvas = document.createElement('canvas');
+    const ui = document.createElement('div'); ui.className='egg-ui';
+    container.appendChild(canvas); container.appendChild(ui);
+
+    ui.innerHTML = `
+      <div class="egg-hud" aria-hidden="true">
+        <div class="egg-pill">Score: <span id="egScore">0</span></div>
+        <div class="egg-pill">High: <span id="egHigh">0</span></div>
+        <div class="egg-pill">Level: <span id="egLevel">1</span></div>
       </div>
-    </div>
-    <div class="egg-overlay" id="egOver" style="display:none">
-      <div class="egg-panel" style="text-align:center">
-        <h2 class="egg-title" style="margin-bottom:.25rem">Good Run!</h2>
-        <div style="margin:0 0 .75rem">Final Score: <b id="egFinal">0</b></div>
-        <div class="egg-btns" style="justify-content:center; gap:12px; flex-wrap:wrap">
-          <button class="egg-btn" id="egRetryBtn">Play Again</button>
-          <a class="order-button" href="https://m.me/daddy.daughter.trapping" target="_blank" rel="noopener">Contact us to order</a>
+      <div class="egg-overlay" id="egStart">
+        <div class="egg-panel">
+          <div class="egg-tag">Daddy Daughter Trapping</div>
+          <h2 class="egg-title">Egg Cover Catch — Raccoon Edition</h2>
+          <p style="margin:.25rem 0 1rem; color:#ddd">Move the <b>raccoon</b> to catch Egg Toppers and avoid the rain.</p>
+          <div class="egg-row">
+            <div class="egg-price"><b>$6</b><br><small>Per Egg</small></div>
+            <div class="egg-price"><b>$60</b><br><small>12 Eggs</small></div>
+          </div>
+          <div style="margin:.25rem 0 .75rem">Controls: ← → or A/D • P to pause • Tap left/right on mobile</div>
+          <div class="egg-btns">
+            <button class="egg-btn" id="egStartBtn">Start</button>
+            <!-- Reuse your site button styling -->
+            <a class="order-button" href="https://m.me/daddy.daughter.trapping" target="_blank" rel="noopener">Contact us to order</a>
+          </div>
+          <div class="egg-help">Opens Facebook Messenger to our page.</div>
         </div>
-        <div class="egg-help">Tip: streaks boost points. Rain ends the run.</div>
       </div>
-    </div>
-    <div class="egg-touch left" id="egTouchL" aria-hidden="true"></div>
-    <div class="egg-touch right" id="egTouchR" aria-hidden="true"></div>
-  `;
 
-  // ---- Sizing ----
-  const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
-  const ctx = canvas.getContext('2d');
-  function resize(){
-    const h = Number(container.getAttribute('data-height') || 520);
-    const w = container.clientWidth;
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-  window.addEventListener('resize', resize, {passive:true});
-  resize();
+      <div class="egg-overlay" id="egOver" style="display:none">
+        <div class="egg-panel" style="text-align:center">
+          <h2 class="egg-title" style="margin-bottom:.25rem">Game Over</h2>
+          <div style="margin:0 0 .6rem">Final Score: <b id="egFinal">0</b> • Level: <b id="egFinalLevel">1</b></div>
 
-  // ---- UI refs ----
-  const el = {
-    score: ui.querySelector('#egScore'),
-    high: ui.querySelector('#egHigh'),
-    level: ui.querySelector('#egLevel'),
-    start: ui.querySelector('#egStart'),
-    over: ui.querySelector('#egOver'),
-    final: ui.querySelector('#egFinal'),
-    startBtn: ui.querySelector('#egStartBtn'),
-    retryBtn: ui.querySelector('#egRetryBtn'),
-    touchL: ui.querySelector('#egTouchL'),
-    touchR: ui.querySelector('#egTouchR'),
-  };
+          <!-- Discount (only shown if Level >= 5) -->
+          <div id="egOverDiscount" style="display:none; margin:.5rem auto .9rem; background:#1f1f1f;border-left:6px solid #c17a3c;border:1px solid #333; border-radius:10px; padding:12px; width:min(520px,90%); text-align:left;">
+            <div style="font-weight:800; margin-bottom:6px;">Discount Unlocked! 🎉</div>
+            <div style="line-height:1.6">
+              Use code <span style="font-weight:900; background:#2a2a2a; border:1px solid #444; border-radius:8px; padding:2px 8px;">DDT10</span> for <b>10% off</b> your Egg Toppers.
+              <br/>Please <b>include this code in your Facebook message</b> for a 10% discount (<b>1 per customer</b>). Thanks for playing!
+            </div>
+            <div style="margin-top:.6rem">
+              <a class="order-button" href="https://m.me/daddy.daughter.trapping" target="_blank" rel="noopener">Message Us Now</a>
+            </div>
+          </div>
 
-  // ---- High score ----
-  const HS_KEY = 'eggcover_raccoon_img_high_v1';
-  const getHS = () => Number(localStorage.getItem(HS_KEY) || 0);
-  const setHS = v => localStorage.setItem(HS_KEY, String(v));
-  el.high.textContent = getHS();
+          <div class="egg-btns" style="justify-content:center; gap:12px; flex-wrap:wrap">
+            <button class="egg-btn" id="egRetryBtn">Play Again</button>
+            <a class="order-button" href="https://m.me/daddy.daughter.trapping" target="_blank" rel="noopener">Contact us to order</a>
+          </div>
+        </div>
+      </div>
 
-  // ---- Game State ----
-  const state = { running:false, paused:false, score:0, level:1, last:performance.now(), spawnMs:900, spawnAcc:0, items:[], particles:[], streak:0 };
+      <div class="egg-touch left" id="egTouchL" aria-hidden="true"></div>
+      <div class="egg-touch right" id="egTouchR" aria-hidden="true"></div>
+    `;
 
-  // ---- Player (Raccoon) ----
-  const player = { x: (canvas.width/dpr)/2, y: (canvas.height/dpr)-72, w: 120, h: 90, vx:0, speed: 540 };
-  function resetPlayer(){ player.x = (canvas.width/dpr)/2; player.vx = 0; }
+    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+    const ctx = canvas.getContext('2d');
 
-  // Load image if provided (else fallback to built-in nicer SVG)
-  const raccoonImg = new Image();
-  raccoonImg.crossOrigin = 'anonymous';
-  let raccoonReady = false;
-  const DEFAULT_SVG = `
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 160'>
-      <defs>
-        <linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>
-          <stop offset='0' stop-color='#6b6b6b'/>
-          <stop offset='1' stop-color='#4e4e4e'/>
-        </linearGradient>
-      </defs>
-      <!-- body -->
-      <rect x='30' y='70' rx='28' ry='28' width='160' height='66' fill='url(#g)'/>
-      <rect x='46' y='82' rx='20' ry='20' width='128' height='42' fill='#7d7d7d' opacity='.8'/>
-      <!-- head -->
-      <ellipse cx='80' cy='58' rx='38' ry='30' fill='url(#g)'/>
-      <ellipse cx='80' cy='64' rx='26' ry='18' fill='#9a9a9a'/>
-      <!-- ears -->
-      <path d='M57 47 L70 23 L78 45 Z' fill='#6b6b6b'/>
-      <path d='M103 47 L90 23 L82 45 Z' fill='#6b6b6b'/>
-      <path d='M60 44 L69 28 L74 44 Z' fill='#d4a6a6'/>
-      <path d='M100 44 L91 28 L86 44 Z' fill='#d4a6a6'/>
-      <!-- mask -->
-      <ellipse cx='80' cy='60' rx='36' ry='14' fill='#2a2a2a'/>
-      <!-- eyes -->
-      <ellipse cx='66' cy='60' rx='7' ry='6' fill='#fff'/>
-      <ellipse cx='94' cy='60' rx='7' ry='6' fill='#fff'/>
-      <circle cx='66' cy='60' r='3' fill='#000'/>
-      <circle cx='94' cy='60' r='3' fill='#000'/>
-      <!-- nose -->
-      <ellipse cx='80' cy='70' rx='4' ry='3' fill='#161616'/>
-      <!-- whiskers -->
-      <g stroke='#1e1e1e' stroke-width='2'>
-        <line x1='76' y1='70' x2='56' y2='74'/>
-        <line x1='76' y1='74' x2='56' y2='80'/>
-        <line x1='84' y1='70' x2='104' y2='74'/>
-        <line x1='84' y1='74' x2='104' y2='80'/>
-      </g>
-      <!-- paws/feet -->
-      <ellipse cx='50' cy='116' rx='12' ry='7' fill='#595959'/>
-      <ellipse cx='74' cy='118' rx='12' ry='7' fill='#595959'/>
-      <ellipse cx='158' cy='122' rx='13' ry='8' fill='#565656'/>
-      <!-- tail -->
-      <g transform='translate(168 88) rotate(-32)'>
-        <ellipse cx='0' cy='0' rx='18' ry='42' fill='url(#g)'/>
-        <g stroke='#2a2a2a' stroke-width='10'>
-          <line x1='-14' y1='-20' x2='14' y2='-20'/>
-          <line x1='-14' y1='0' x2='14' y2='0'/>
-          <line x1='-14' y1='20' x2='14' y2='20'/>
+    function resize(){
+      const h = Number(container.getAttribute('data-height') || 520);
+      const w = container.clientWidth;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    const ro = new ResizeObserver(resize); ro.observe(container);
+    resize();
+
+    const el = {
+      score: ui.querySelector('#egScore'),
+      high: ui.querySelector('#egHigh'),
+      level: ui.querySelector('#egLevel'),
+      start: ui.querySelector('#egStart'),
+      over: ui.querySelector('#egOver'),
+      final: ui.querySelector('#egFinal'),
+      finalLevel: ui.querySelector('#egFinalLevel'),
+      startBtn: ui.querySelector('#egStartBtn'),
+      retryBtn: ui.querySelector('#egRetryBtn'),
+      touchL: ui.querySelector('#egTouchL'),
+      touchR: ui.querySelector('#egTouchR'),
+      overDiscount: ui.querySelector('#egOverDiscount'),
+    };
+
+    // High score
+    const HS_KEY = 'eggcover_raccoon_collapsible_high_v1';
+    const getHS = () => Number(localStorage.getItem(HS_KEY) || 0);
+    const setHS = v => localStorage.setItem(HS_KEY, String(v));
+    el.high.textContent = getHS();
+
+    // Game state
+    const state = { running:false, paused:false, score:0, level:1, last:performance.now(), spawnMs:900, spawnAcc:0, items:[], particles:[], streak:0 };
+
+    // Player & raccoon image
+    const player = { x: (canvas.width/dpr)/2, y: (canvas.height/dpr)-72, w: 120, h: 90, vx:0, speed: 540 };
+    function resetPlayer(){ player.x = (canvas.width/dpr)/2; player.vx = 0; }
+
+    const raccoonImg = new Image();
+    raccoonImg.crossOrigin = 'anonymous';
+    let raccoonReady = false;
+    const DEFAULT_SVG = `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 160'>
+        <defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#6b6b6b'/><stop offset='1' stop-color='#4e4e4e'/></linearGradient></defs>
+        <rect x='30' y='70' rx='28' ry='28' width='160' height='66' fill='url(#g)'/>
+        <rect x='46' y='82' rx='20' ry='20' width='128' height='42' fill='#7d7d7d' opacity='.8'/>
+        <ellipse cx='80' cy='58' rx='38' ry='30' fill='url(#g)'/>
+        <ellipse cx='80' cy='64' rx='26' ry='18' fill='#9a9a9a'/>
+        <path d='M57 47 L70 23 L78 45 Z' fill='#6b6b6b'/>
+        <path d='M103 47 L90 23 L82 45 Z' fill='#6b6b6b'/>
+        <path d='M60 44 L69 28 L74 44 Z' fill='#d4a6a6'/>
+        <path d='M100 44 L91 28 L86 44 Z' fill='#d4a6a6'/>
+        <ellipse cx='80' cy='60' rx='36' ry='14' fill='#2a2a2a'/>
+        <ellipse cx='66' cy='60' rx='7' ry='6' fill='#fff'/>
+        <ellipse cx='94' cy='60' rx='7' ry='6' fill='#fff'/>
+        <circle cx='66' cy='60' r='3' fill='#000'/>
+        <circle cx='94' cy='60' r='3' fill='#000'/>
+        <ellipse cx='80' cy='70' rx='4' ry='3' fill='#161616'/>
+        <g stroke='#1e1e1e' stroke-width='2'><line x1='76' y1='70' x2='56' y2='74'/><line x1='76' y1='74' x2='56' y2='80'/><line x1='84' y1='70' x2='104' y2='74'/><line x1='84' y1='74' x2='104' y2='80'/></g>
+        <ellipse cx='50' cy='116' rx='12' ry='7' fill='#595959'/>
+        <ellipse cx='74' cy='118' rx='12' ry='7' fill='#595959'/>
+        <g transform='translate(168 88) rotate(-32)'>
+          <ellipse cx='0' cy='0' rx='18' ry='42' fill='url(#g)'/>
+          <g stroke='#2a2a2a' stroke-width='10'>
+            <line x1='-14' y1='-20' x2='14' y2='-20'/>
+            <line x1='-14' y1='0' x2='14' y2='0'/>
+            <line x1='-14' y1='20' x2='14' y2='20'/>
+          </g>
         </g>
-      </g>
-    </svg>`;
-  const DEFAULT_RACCOON = 'data:image/svg+xml;utf8,' + encodeURIComponent(DEFAULT_SVG);
-  raccoonImg.onload = ()=>{ raccoonReady = true; };
-  raccoonImg.onerror = ()=>{ raccoonReady = false; };
-  raccoonImg.src = container.getAttribute('data-raccoon') || DEFAULT_RACCOON;
+      </svg>`;
+    const DEFAULT_RACCOON = 'data:image/svg+xml;utf8,' + encodeURIComponent(DEFAULT_SVG);
+    raccoonImg.onload = ()=>{ raccoonReady = true; };
+    raccoonImg.onerror = ()=>{ raccoonReady = false; };
+    raccoonImg.src = container.getAttribute('data-raccoon') || DEFAULT_RACCOON;
 
-  // ---- Input ----
-  const keys = new Set();
-  container.addEventListener('keydown', (e)=>{
-    if (e.key==='p' || e.key==='P'){ if(state.running){ state.paused=!state.paused; e.preventDefault(); } }
-    if (['ArrowLeft','a','A'].includes(e.key)) { keys.add('left'); e.preventDefault(); }
-    if (['ArrowRight','d','D'].includes(e.key)) { keys.add('right'); e.preventDefault(); }
-  });
-  container.addEventListener('keyup', (e)=>{
-    if (['ArrowLeft','a','A'].includes(e.key)) keys.delete('left');
-    if (['ArrowRight','d','D'].includes(e.key)) keys.delete('right');
-  });
-  let leftHeld=false, rightHeld=false;
-  function bindTouch(node, on){
-    ['touchstart','pointerdown','mousedown'].forEach(t=>node.addEventListener(t, e=>{ on(true); e.preventDefault(); container.focus(); }));
-    ['touchend','touchcancel','pointerup','mouseup','mouseleave'].forEach(t=>node.addEventListener(t, ()=>on(false)));
-  }
-  bindTouch(el.touchL, v=>leftHeld=v);
-  bindTouch(el.touchR, v=>rightHeld=v);
-
-  // ---- Items ----
-  const TYPE_EGG='egg', TYPE_RAIN='rain';
-  function spawnItem(){
-    const W = canvas.width/dpr;
-    const type = Math.random() < 0.78 ? TYPE_EGG : TYPE_RAIN;
-    const size = (type===TYPE_EGG? 18 : 8) + Math.random()*3;
-    const x = Math.random()*(W - size*2)+size;
-    const y = -20;
-    const vy = (type===TYPE_EGG? 200: 280) + Math.random()*140; // px/s
-    const rot = Math.random()*Math.PI*2; const omega = (Math.random()*2-1)*2;
-    state.items.push({type,x,y,vy,rot,omega,size});
-  }
-
-  // ---- Particles ----
-  function pop(x,y,color,count=12){
-    for(let i=0;i<count;i++){
-      const a=Math.random()*Math.PI*2, s=80+Math.random()*180;
-      state.particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:.55+Math.random()*.45,color});
+    // Input
+    const keys = new Set();
+    container.addEventListener('keydown', (e)=>{
+      if (e.key==='p' || e.key==='P'){ if(state.running){ state.paused=!state.paused; e.preventDefault(); } }
+      if (['ArrowLeft','a','A'].includes(e.key)) { keys.add('left'); e.preventDefault(); }
+      if (['ArrowRight','d','D'].includes(e.key)) { keys.add('right'); e.preventDefault(); }
+    });
+    container.addEventListener('keyup', (e)=>{
+      if (['ArrowLeft','a','A'].includes(e.key)) keys.delete('left');
+      if (['ArrowRight','d','D'].includes(e.key)) keys.delete('right');
+    });
+    let leftHeld=false, rightHeld=false;
+    function bindTouch(node, on){
+      ['touchstart','pointerdown','mousedown'].forEach(t=>node.addEventListener(t, e=>{ on(true); e.preventDefault(); container.focus(); }));
+      ['touchend','touchcancel','pointerup','mouseup','mouseleave'].forEach(t=>node.addEventListener(t, ()=>on(false)));
     }
-  }
+    bindTouch(el.touchL, v=>leftHeld=v);
+    bindTouch(el.touchR, v=>rightHeld=v);
 
-  // ---- Flow ----
-  function start(){
-    state.running=true; state.paused=false; state.score=0; state.level=1; state.spawnMs=900; state.spawnAcc=0; state.items.length=0; state.particles.length=0; state.streak=0;
-    resetPlayer(); el.score.textContent='0'; el.level.textContent='1'; el.start.style.display='none'; el.over.style.display='none';
-    container.focus(); state.last=performance.now();
-  }
-  function end(){
-    state.running=false; el.final.textContent = state.score;
-    if (state.score > getHS()) { setHS(state.score); el.high.textContent = state.score; }
-    el.over.style.display='grid';
-  }
-
-  // ---- Update/Draw ----
-  function update(dt){
-    if (!state.running || state.paused) return;
-    const W = canvas.width/dpr, H = canvas.height/dpr;
-
-    const L = keys.has('left')||leftHeld; const R = keys.has('right')||rightHeld;
-    player.vx = (R?1:0) - (L?1:0);
-    player.x += player.vx*player.speed*dt; player.x = Math.max(58, Math.min(W-58, player.x));
-
-    state.spawnAcc += dt*1000; while(state.spawnAcc > state.spawnMs){ state.spawnAcc -= state.spawnMs; spawnItem(); }
-
-    for(let i=state.items.length-1;i>=0;i--){
-      const it = state.items[i]; it.y += it.vy*dt; it.rot += it.omega*dt;
-      const withinX = Math.abs(it.x - player.x) < (player.w/2 + it.size*0.8);
-      const withinY = Math.abs(it.y - player.y) < (player.h*0.45 + it.size*0.8);
-      if (withinX && withinY){
-        if (it.type===TYPE_EGG){
-          state.streak = Math.min(10, state.streak+1);
-          const gain = 10 + state.streak*2; state.score += gain; el.score.textContent = state.score; pop(it.x,it.y,'#f4f1ea',10); state.items.splice(i,1);
-        } else {
-          pop(it.x,it.y,'#4aa1ff',16); state.items.splice(i,1); end(); break;
-        }
-      } else if (it.y > H+50){ if (it.type===TYPE_EGG) state.streak=0; state.items.splice(i,1); }
+    // Items
+    const TYPE_EGG='egg', TYPE_RAIN='rain';
+    function spawnItem(){
+      const W = canvas.width/dpr;
+      const type = Math.random() < 0.8 ? TYPE_EGG : TYPE_RAIN;
+      const size = (type===TYPE_EGG? 18 : 8) + Math.random()*3;
+      const x = Math.random()*(W - size*2)+size;
+      const y = -20;
+      const vy = (type===TYPE_EGG? 200: 280) + Math.random()*140;
+      const rot = Math.random()*Math.PI*2; const omega = (Math.random()*2-1)*2;
+      state.items.push({type,x,y,vy,rot,omega,size});
     }
 
-    const newLevel = 1 + Math.floor(state.score/150);
-    if (newLevel!==state.level){ state.level=newLevel; el.level.textContent=String(state.level); state.spawnMs = Math.max(360, 900 - (state.level-1)*50); pop(player.x, player.y-50, '#c17a3c', 24); }
-
-    for(let i=state.particles.length-1;i>=0;i--){ const p=state.particles[i]; p.life-=dt; if(p.life<=0){state.particles.splice(i,1); continue;} p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=80*dt; }
-  }
-
-  function draw(){
-    const W = canvas.width/dpr, H = canvas.height/dpr;
-    ctx.clearRect(0,0,W,H);
-    // background + ground line
-    const g = ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'#0d0d0d'); g.addColorStop(1,'#131313'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-    ctx.strokeStyle='#2a2a2a'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,H-40); ctx.lineTo(W,H-40); ctx.stroke();
-
-    // shadow
-    ctx.save(); ctx.globalAlpha=0.25; ctx.fillStyle='#000'; ctx.beginPath(); ctx.ellipse(player.x, H-38, 64, 12, 0, 0, Math.PI*2); ctx.fill(); ctx.restore();
-
-    // raccoon sprite
-    if (raccoonReady){
-      ctx.drawImage(raccoonImg, player.x - player.w/2, player.y - player.h*0.85, player.w, player.h);
-    } else {
-      // fallback simple shape (won't be seen once your image loads)
-      drawRaccoonFallback(ctx, player.x, player.y, 90, 34);
+    // Particles
+    function pop(x,y,color,count=12){
+      for(let i=0;i<count;i++){
+        const a=Math.random()*Math.PI*2, s=80+Math.random()*180;
+        state.particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:.55+Math.random()*.45,color});
+      }
     }
 
-    // items
-    for(const it of state.items){ ctx.save(); ctx.translate(it.x,it.y); ctx.rotate(it.rot);
-      if (it.type===TYPE_EGG){ ctx.fillStyle='#f4f1ea'; ellipse(ctx,0,0,it.size*.8,it.size*1.1); ctx.fill(); ctx.strokeStyle='#c17a3c'; ctx.lineWidth=2; ctx.beginPath(); ctx.ellipse(0,-it.size*0.1,it.size*0.75,it.size*0.2,0,0,Math.PI*2); ctx.stroke(); }
-      else { ctx.fillStyle='#4aa1ff'; ctx.beginPath(); ctx.moveTo(0,-it.size); ctx.bezierCurveTo(it.size,-it.size,it.size,it.size*0.2,0,it.size); ctx.bezierCurveTo(-it.size,it.size*0.2,-it.size,-it.size,0,-it.size); ctx.fill(); }
-      ctx.restore(); }
+    // Flow
+    function start(){
+      state.running=true; state.paused=false; state.score=0; state.level=1; state.spawnMs=900; state.spawnAcc=0; state.items.length=0; state.particles.length=0; state.streak=0;
+      resetPlayer(); el.score.textContent='0'; el.level.textContent='1'; el.start.style.display='none'; el.over.style.display='none';
+      container.focus(); state.last=performance.now();
+    }
+    function end(){
+      state.running=false; el.final.textContent = state.score; el.finalLevel.textContent = state.level;
+      if (state.score > getHS()) { setHS(state.score); el.high.textContent = state.score; }
+      // Discount visible only if level >= 5
+      el.overDiscount.style.display = (state.level >= 5) ? 'block' : 'none';
+      el.over.style.display='grid';
+    }
 
-    // particles
-    for(const p of state.particles){ ctx.globalAlpha=Math.max(0,Math.min(1,p.life)); ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,2.2,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; }
+    function update(dt){
+      if (!state.running || state.paused) return;
+      const W = canvas.width/dpr, H = canvas.height/dpr;
 
-    if (state.running && state.paused){ ctx.fillStyle='rgba(0,0,0,.45)'; ctx.fillRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.font='700 22px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText('Paused — press P to resume', W/2, H/2); }
+      const L = keys.has('left')||leftHeld; const R = keys.has('right')||rightHeld;
+      player.vx = (R?1:0) - (L?1:0);
+      player.x += player.vx*player.speed*dt; player.x = Math.max(58, Math.min(W-58, player.x));
+
+      state.spawnAcc += dt*1000; while(state.spawnAcc > state.spawnMs){ state.spawnAcc -= state.spawnMs; spawnItem(); }
+
+      for(let i=state.items.length-1;i>=0;i--){
+        const it = state.items[i]; it.y += it.vy*dt; it.rot += it.omega*dt;
+        const withinX = Math.abs(it.x - player.x) < (player.w/2 + it.size*0.8);
+        const withinY = Math.abs(it.y - player.y) < (player.h*0.45 + it.size*0.8);
+        if (withinX && withinY){
+          if (it.type===TYPE_EGG){
+            state.streak = Math.min(10, state.streak+1);
+            const gain = 10 + state.streak*2; state.score += gain; el.score.textContent = state.score; pop(it.x,it.y,'#f4f1ea',10); state.items.splice(i,1);
+          } else {
+            pop(it.x,it.y,'#4aa1ff',16); state.items.splice(i,1); end(); break;
+          }
+        } else if (it.y > H+50){ if (it.type===TYPE_EGG) state.streak=0; state.items.splice(i,1); }
+      }
+
+      const newLevel = 1 + Math.floor(state.score/160);
+      if (newLevel!==state.level){ state.level=newLevel; el.level.textContent=String(state.level); state.spawnMs = Math.max(360, 900 - (state.level-1)*50); pop(player.x, player.y-50, '#c17a3c', 24); }
+
+      for(let i=state.particles.length-1;i>=0;i--){ const p=state.particles[i]; p.life-=dt; if(p.life<=0){state.particles.splice(i,1); continue;} p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=80*dt; }
+    }
+
+    function draw(){
+      const W = canvas.width/dpr, H = canvas.height/dpr;
+      ctx.clearRect(0,0,W,H);
+
+      // Background
+      const g = ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'#0d0d0d'); g.addColorStop(1,'#131313'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+      // ground
+      ctx.strokeStyle='#2a2a2a'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,H-44); ctx.lineTo(W,H-44); ctx.stroke();
+
+      // Soft shadow under raccoon
+      ctx.save(); ctx.globalAlpha=0.25; ctx.fillStyle='#000'; ctx.beginPath(); ctx.ellipse(player.x, H-42, 60, 10, 0, 0, Math.PI*2); ctx.fill(); ctx.restore();
+
+      // Raccoon sprite
+      if (raccoonReady){
+        ctx.drawImage(raccoonImg, player.x - player.w/2, player.y - player.h*0.85, player.w, player.h);
+      } else {
+        // Fallback simple block (hidden once your image loads)
+        ctx.fillStyle = '#6a6a6a'; ctx.fillRect(player.x-45, player.y-28, 90, 34);
+      }
+
+      // Items
+      for(const it of state.items){ ctx.save(); ctx.translate(it.x,it.y); ctx.rotate(it.rot);
+        if (it.type===TYPE_EGG){ ctx.fillStyle='#f4f1ea'; ellipse(ctx,0,0,it.size*.8,it.size*1.1); ctx.fill(); ctx.strokeStyle='#c17a3c'; ctx.lineWidth=2; ctx.beginPath(); ctx.ellipse(0,-it.size*0.1,it.size*0.75,it.size*0.2,0,0,Math.PI*2); ctx.stroke(); }
+        else { ctx.fillStyle='#4aa1ff'; ctx.beginPath(); ctx.moveTo(0,-it.size); ctx.bezierCurveTo(it.size,-it.size,it.size,it.size*0.2,0,it.size); ctx.bezierCurveTo(-it.size,it.size*0.2,-it.size,-it.size,0,-it.size); ctx.fill(); }
+        ctx.restore(); }
+
+      // Particles
+      for(const p of state.particles){ ctx.globalAlpha=Math.max(0,Math.min(1,p.life)); ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,2.2,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; }
+
+      if (state.running && state.paused){ ctx.fillStyle='rgba(0,0,0,.45)'; ctx.fillRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.font='700 22px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText('Paused — press P to resume', W/2, H/2); }
+    }
+
+    function loop(now){ const dt = Math.min(0.033, (now - state.last)/1000); state.last=now; update(dt); draw(); requestAnimationFrame(loop); }
+    requestAnimationFrame(loop);
+
+    // Helpers
+    function ellipse(ctx,x,y,rx,ry){ ctx.beginPath(); ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2); }
+
+    // Buttons
+    el.startBtn.addEventListener('click', start);
+    el.retryBtn.addEventListener('click', start);
   }
-
-  function loop(now){ const dt = Math.min(0.033, (now - state.last)/1000); state.last=now; update(dt); draw(); requestAnimationFrame(loop); }
-  requestAnimationFrame(loop);
-
-  // ---- Helpers ----
-  function ellipse(ctx,x,y,rx,ry){ ctx.beginPath(); ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2); }
-  function roundRect(ctx,x,y,w,h,r,fill,stroke){ if(w<2*r) r=w/2; if(h<2*r) r=h/2; ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); if(fill) ctx.fill(); if(stroke) ctx.stroke(); }
-  function drawRaccoonFallback(ctx, cx, cy, w, h){
-    ctx.save(); ctx.translate(cx,cy);
-    ctx.fillStyle = '#5b5b5b'; roundRect(ctx, -w/2, -h/2, w, h, 10, true, false);
-    ctx.fillStyle = '#737373'; roundRect(ctx, -w/2+6, -h/2+6, w-12, h-12, 8, true, false);
-    ctx.restore();
-  }
-
-  // ---- Buttons ----
-  el.startBtn.addEventListener('click', start);
-  el.retryBtn.addEventListener('click', start);
 })();
 </script>
 
+      </div>
+      <!-- END PRICING / ORDER -->
     </section>
 
     <!-- MEDIA -->
@@ -796,7 +819,7 @@ EMBED INSTRUCTIONS
             if (j === i) { 
               // Start muted, but allow user to unmute
               if (!v.hasAttribute('data-user-unmuted')) {
-                v.muted = false;
+                v.muted = true;
               }
               v.play().catch(()=>{}); 
             }
